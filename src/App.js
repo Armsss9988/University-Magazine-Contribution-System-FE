@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import HomeScreen from "./screens/HomeScreen";
+import LoginScreen from "./screens/LoginScreen";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ChooseRoleLogin from "./screens/ChooseRoleLogin";
+import ChooseRoleRegister from "./screens/ChooseRoleRegister";
 
 function App() {
-    const [message, setMessage] = useState("");
-
-    useEffect(() => {
-        fetch("http://localhost:8000/message")
-            .then((res) => res.json())
-            .then((data) => setMessage(data.message));
-    }, []);
+    
 
     return (
-        <div className="App">
-            <h1>{message}</h1>
-        </div>
+        <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/chooserolelogin" element={<ChooseRoleLogin />} />
+        <Route path="/chooseroleregister" element={<ChooseRoleRegister />} />
+      </Routes>
+    </BrowserRouter>
     );
 }
 
