@@ -1,8 +1,22 @@
-import React, { useState, useEffect } from "react";
-import "./styles.css";
-import Footer from "../components/Footer";
+import React, { useState } from 'react';
+import './styles.css';
 
-function HomeScreen() {
+const MagazineGd = () => {
+    const [articles, setArticles] = useState([
+        {
+            title: 'Bài viết 1',
+            content: 'Đây là nội dung của bài viết 1.'
+        },
+        {
+            title: 'Bài viết 2',
+            content: 'Đây là nội dung của bài viết 2.'
+        },
+        {
+            title: 'Bài viết 3',
+            content: 'Đây là nội dung của bài viết 3.'
+        }
+    ]);
+
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState('option1');
 
@@ -16,7 +30,7 @@ function HomeScreen() {
     };
 
     return (
-        <div className="container">
+        <div>
             <header>
                 <div className="logoname">
                     <h2 style={{ fontSize: "20px" }}>FGW University Magazine Contribution</h2>
@@ -65,18 +79,27 @@ function HomeScreen() {
 
             <div className="line"></div>
 
-            <div>
-                <img className="blogimg"
-                    src="https://cms.greenwich.edu.vn/pluginfile.php/1/theme_adaptable/p1/1698976651/socialbg.png"
-                    alt="Logo" />
+            <div className="App">
+                <h1>Magazine of GD</h1>
+                <ul>
+                    {articles.map((article) => (
+                        <li key={article.title}>
+                            <h2>{article.title}</h2>
+                            <p>{article.content}</p>
+                        </li>
+                    ))}
+                </ul>
             </div>
+
             <div className="line"></div>
-            <Footer/>
+            <footer style={{ backgroundColor: '#E7F4FD', padding: '20px', position: 'absolute', width: '100%' }}>
+                <div style={{ textAlign: 'center' }}>
+                    &copy; 2024 - FPT Greenwich University
+                </div>
+            </footer>
         </div>
 
-
-
     );
-}
+};
 
-export default HomeScreen
+export default MagazineGd;

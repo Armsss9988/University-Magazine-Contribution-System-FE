@@ -1,0 +1,393 @@
+/* Container and footer */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.main-content{
+    flex: 1 1 auto;
+}
+footer{
+    background-color: #e7f4fd;
+    padding: 20px;
+}
+
+header {
+    background-color: #e7f4fd;
+    display: flex;
+    height: 100px;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    padding-left: 20px;
+    padding-right: 50px;
+    flex-direction: row;
+}
+
+.logoname {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    justify-content: space-between;
+}
+
+.loginres {
+    flex-direction: row;
+    display: flex;
+}
+
+.btnLogin {
+    width: 80px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 10px;
+    color: #FCF6E6;
+    background-color: #315D7D;
+}
+
+.btnLogin:hover {
+    background-color: #FCF6E6;
+    cursor: pointer;
+    color: black;
+}
+
+.btnRegister {
+    width: 80px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    color: #FCF6E6;
+    display: flex;
+    margin-left: 20px;
+    border-radius: 10px;
+    background-color: #315D7D;
+}
+
+.blogimg {
+    width: 100%;
+}
+
+.line {
+    height: 2px;
+    background-color: #315D7D;
+}
+
+.logoimg {
+    width: 80px;
+    height: 80px;
+    margin-top: 30px;
+}
+
+.logincontainer {
+    display: flex;
+    align-items: center;
+    height: 500px;
+    justify-content: center;
+
+}
+
+.loginframe {
+    background-color: #FCF6E6;
+    padding: 50px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginform {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    width: 300px;
+    height: 25px;
+    border-radius: 10px;
+}
+
+.loginbtn {
+    margin-top: 50px;
+    width: 300px;
+    background-color: #315D7D;
+    height: 35px;
+    font-size: 16px;
+    color: white;
+    border-radius: 10px;
+}
+
+.loginbtn:hover {
+    background-color: #FCF6E6;
+    cursor: pointer;
+    color: black;
+}
+
+.homebtn {
+    background-color: #315D7D;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.homebtn:hover {
+    background-color: #FCF6E6;
+    cursor: pointer;
+    color: black;
+}
+
+
+.dropdown {
+    position: relative;
+    /* Needed for absolute positioning of dropdown content */
+}
+
+.dropdown-content {
+    display: none;
+    /* Initially hide the dropdown content */
+    position: absolute;
+    /* Position the content absolutely relative to the dropdown button */
+    background-color: #f1f1f1;
+    min-width: 160px;
+    padding: 0;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    /* Ensure content is displayed above other elements */
+    display: flex;
+    flex-direction: column;
+
+}
+
+.drlist-item {
+    padding: 10px;
+    text-decoration: none;
+}
+
+.drlist-item:hover {
+    background-color: #FCF6E6;
+    cursor: pointer;
+    color: black;
+}
+
+/* Student home */
+
+
+.box-list-course {
+    width: 100%;
+    height: 100px;
+    border: 3px solid black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Student detail */
+.sub-box {
+    border: 1px solid black;
+
+}
+
+.detail-item {
+    height: 50px;
+    background-color: white;
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+}
+
+.comment-item {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+}
+
+.title-item {
+    width: 300px;
+    border-right: 1px solid black;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.result-item {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Student list */
+.box-list {
+    width: 100%;
+    height: 100px;
+    border: 3px solid black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Student edit */
+.box-list-edit {
+    width: 100%;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Avatar */
+.dropdown-content-ava {
+    display: none;
+    /* Initially hide the dropdown content */
+    position: absolute;
+    /* Position the content absolutely relative to the dropdown button */
+    background-color: #f1f1f1;
+    min-width: 50px;
+    padding: 0;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    /* Ensure content is displayed above other elements */
+    display: flex;
+    flex-direction: column;
+
+}
+
+.drlist-item-ava {
+    padding: 10px;
+    text-decoration: none;
+}
+
+.drlist-item-ava:hover {
+    background-color: #FCF6E6;
+    cursor: pointer;
+    color: black;
+}
+
+.active {
+    background-color: #000;
+    color: #fff;
+  }
+
+  /* Profile Student */
+  .profile-container {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    flex: 1 1 auto;
+  }
+  
+  .avatar-profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .profile-info {
+    flex: 1;
+  }
+  
+  .full-name {
+    margin-bottom: 10px;
+  }
+  
+  .secon-info {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .epa {
+    margin-bottom: 5px;
+  }
+
+  /* Edit profile student */
+  .edit-profile {
+    flex: 1 1 auto;
+    padding: 50px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+  
+  .avatar-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .avatar-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .avatar-container input {
+    display: none;
+  }
+  
+  .avatar-container label {
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+  
+  .avatar-container label:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  textarea {
+    height: 100px;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background-color: #333;
+  }

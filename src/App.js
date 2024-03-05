@@ -3,8 +3,17 @@ import "./App.css";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ChooseRoleLogin from "./screens/ChooseRoleLogin";
-import ChooseRoleRegister from "./screens/ChooseRoleRegister";
+import MagazineComp from "./screens/MagazineComp";
+import MagazineBus from "./screens/MagazineBus";
+import MagazineGd from "./screens/MagazineGd";
+import StudentHome from "./screens/StudentHome";
+import DetailSubmission from "./screens/DetailSubmission";
+import ListSubmission from "./screens/ListSubmission";
+import EditSubmission from "./screens/EditSubmission";
+import NewSubmisson from "./screens/NewSubmission";
+import ProfileStudent from "./screens/ProfileStudent";
+import EditProfileStudent from "./screens/EditProfileStudent";
+
 
 function App() {
     
@@ -12,10 +21,17 @@ function App() {
     return (
         <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomeScreen />} />
+        <Route path="/" element={<StudentHome />} />
         <Route path="/login" element={<LoginScreen />} />
-        <Route path="/chooserolelogin" element={<ChooseRoleLogin />} />
-        <Route path="/chooseroleregister" element={<ChooseRoleRegister />} />
+        <Route path="/magazinecomp" element={<MagazineComp />} />
+        <Route path="/magazinebus" element={<MagazineBus />} />
+        <Route path="/magazinegd" element={<MagazineGd />} />
+        <Route path="/detailsubmission" element={<DetailSubmission />} />
+        <Route path="/listsubmission" element={<ListSubmission />} />
+        <Route path="/editsubmission" element={<EditSubmission />} />
+        <Route path="/newsubmission" element={<NewSubmisson />} />
+        <Route path="/profilestudent" element={<ProfileStudent />} />
+        <Route path="/editprofilestudent" element={<EditProfileStudent />} />
       </Routes>
     </BrowserRouter>
     );
