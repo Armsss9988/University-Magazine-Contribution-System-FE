@@ -1,22 +1,9 @@
-import React, { useState } from 'react';
-import './styles.css';
-import Footer from '../components/Footer';
+import React, { useState, useEffect } from "react";
+import "../screens/styles.css";
+import Avatar from "./Avatar";
 
-const MagazineComp = () => {
-    const [articles, setArticles] = useState([
-        {
-            title: 'Bài viết 1',
-            content: 'Đây là nội dung của bài viết 1.'
-        },
-        {
-            title: 'Bài viết 2',
-            content: 'Đây là nội dung của bài viết 2.'
-        },
-        {
-            title: 'Bài viết 3',
-            content: 'Đây là nội dung của bài viết 3.'
-        }
-    ]);
+function HeaderGuess() {
+
 
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState('option1');
@@ -30,9 +17,9 @@ const MagazineComp = () => {
         setIsOpen(false);
     };
 
+
     return (
-        <div className='container'>
-            <header>
+        <header>
                 <div className="logoname">
                     <h2 style={{ fontSize: "20px" }}>FGW University Magazine Contribution</h2>
 
@@ -77,26 +64,7 @@ const MagazineComp = () => {
 
                 </div>
             </header>
-
-            <div className="line"></div>
-
-            <div style={{flex:'1 1 auto'}}>
-                <h1>Magazine of COMP</h1>
-                <ul>
-                    {articles.map((article) => (
-                        <li key={article.title}>
-                            <h2>{article.title}</h2>
-                            <p>{article.content}</p>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-            <div className="line"></div>
-            <Footer/>
-        </div>
-
     );
-};
+}
 
-export default MagazineComp;
+export default HeaderGuess
