@@ -1,45 +1,19 @@
 import React, { useState, useEffect } from "react";
-import "./styles.css";
-import Footer from "../components/Footer";
+import "../styles.css";
+import Footer from "../../components/Footer";
+import HeaderStudent from "../../components/HeaderStudent";
 
 function EditSubmission() {
 
 
     return (
         <div className="container">
-            <header>
-                <div className="logoname">
-                    <h2 style={{ fontSize: "20px" }}>FGW University Magazine Contribution</h2>
-
-                </div>
-
-                <div className="menu">
-                    <a >
-                    <h2 className="a" style={{ fontSize: '20px', fontWeight: "normal" }}>Home</h2>
-                    </a>
-                    <a>
-                    <h2 className="a" style={{ fontSize: '20px', fontWeight: "normal", marginRight: '100px', marginLeft:'100px' }}>My submission</h2>
-                    </a>
-                    <a>
-                    <h2 className="a" style={{ fontSize: '20px', fontWeight: "normal" }}>Contact</h2>
-                    </a>
-                </div>
-
-                <div className="loginres">
-                    <a href="/login">
-                        <button className="btnLogin">
-                            Login
-                            
-                        </button>
-                    </a>
-
-                    
-                    
-                </div>
-            </header>
+            <HeaderStudent/>
 
             <div className="line"></div>
-            <div className="main-content" style={{padding:'80px', display:'flex', justifyContent:'center', alignItems:'center'}}>
+            <h1>List Submission</h1>
+            <div className="main-content" style={{padding:'80px', display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+            
                 <div className="box-list-edit">
 
                     <div style={{display:'flex', flexDirection:'column'}}>

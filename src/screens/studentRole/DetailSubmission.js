@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./styles.css";
-import Avatar from "../components/Avatar";
-import Footer from "../components/Footer";
-import HeaderStudent from "../components/HeaderStudent";
+import "../styles.css";
+import Avatar from "../../components/Avatar";
+import HeaderStudent from '../../components/HeaderStudent';
+import Footer from '../../components/Footer';
+
 
 function DetailSubmission() {
 
@@ -13,7 +14,9 @@ function DetailSubmission() {
 
             <div className="line"></div>
 
+            <h1>Detail Submission</h1>
             <div className="main-content" style={{ padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            
                 <div className="sub-box">
                     <div className="detail-item">
                         <div className="title-item">

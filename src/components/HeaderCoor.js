@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../screens/styles.css";
 import Avatar from "./Avatar";
 
-function HeaderStudent() {
+function HeaderCoor() {
 
 
     const [activeTab, setActiveTab] = useState('/');
@@ -25,7 +25,7 @@ function HeaderStudent() {
                         fontSize: '20px', fontWeight: "normal",
                     }}>Home</h2>
                 </a>
-                <a href="/listsubmission" style={{ textDecoration: "none" }} >
+                <a href="/listcoorsub" style={{ textDecoration: "none" }} >
                     <h2 className="a" style={{
                         fontSize: '20px', fontWeight: "normal", marginRight: '100px',
                         marginLeft: '100px', color: 'black'
@@ -42,4 +42,4 @@ function HeaderStudent() {
     );
 }
 
-export default HeaderStudent
+export default HeaderCoor

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import "./styles.css";
-import Avatar from "../components/Avatar";
-import Footer from "../components/Footer";
-import HeaderStudent from "../components/HeaderStudent";
+import "../styles.css";
+import Avatar from "../../components/Avatar";
+import Footer from '../../components/Footer';
+import HeaderCoor from "../../components/HeaderCoor";
 
-function StudentHome() {
+function CoordiratorHome() {
 
    
 
     return (
         <div className="container">
-            <HeaderStudent/>
+            <HeaderCoor/>
 
             <div className="line"></div>
 
@@ -28,7 +28,7 @@ function StudentHome() {
                     `url("https://cms.greenwich.edu.vn/pluginfile.php/1/theme_adaptable/p2/1698976651/BLOG-technology-in-higher-education%401X.jpg")`,
                 backgroundSize: '100% auto', display: 'flex', justifyContent: 'center', alignItems: 'center'
             }}>
-                <text style={{ color: 'white', fontSize: '54px' }}>Welcome to COMP's University Magazine</text>
+                <text style={{ color: 'white', fontSize: '54px' }}>Faculty Maketing Coordinator</text>
 
             </div>
 
@@ -42,4 +42,4 @@ function StudentHome() {
     );
 }
 
-export default StudentHome
+export default CoordiratorHome

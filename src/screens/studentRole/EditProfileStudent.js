@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Footer from '../components/Footer';
-import HeaderStudent from '../components/HeaderStudent';
+import Footer from '../../components/Footer';
+import HeaderStudent from '../../components/HeaderStudent';
 
 
 const EditProfileStudent = () => {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Dropzone from 'react-dropzone';
-import Avatar from '../components/Avatar';
-import Footer from "../components/Footer";
-
+import Avatar from '../../components/Avatar';
+import HeaderStudent from '../../components/HeaderStudent';
+import Footer from '../../components/Footer';
 const NewSubmisson = () => {
     const [files, setFiles] = useState([]);
 
@@ -12,32 +12,13 @@ const NewSubmisson = () => {
 
     return (
         <div className="container">
-            <header>
-                <div className="logoname">
-                    <h2 style={{ fontSize: "20px" }}>FGW University Magazine Contribution</h2>
-
-                </div>
-
-                <div className="menu">
-                    <a>
-                        <h2 className="a" style={{ fontSize: '20px', fontWeight: "normal" }}>Home</h2>
-                    </a>
-                    <a>
-                        <h2 className="a" style={{ fontSize: '20px', fontWeight: "normal", marginRight: '100px', marginLeft: '100px' }}>My submission</h2>
-                    </a>
-                    <a>
-                        <h2 className="a" style={{ fontSize: '20px', fontWeight: "normal" }}>Contact</h2>
-                    </a>
-                </div>
-
-                <div>
-                    <Avatar/>
-                </div>
-            </header>
+            <HeaderStudent/>
 
             <div className="line"></div>
 
+            <h1>New Submission</h1>
             <div className='main-content' style={{paddingLeft:'50px', paddingRight:'50px', alignItems:'center', display:'flex', flexDirection:'column', justifyContent:'center'}}>
+            
             <div style={{border:'1px solid black', borderRadius:'20px', justifyContent:'center', display:'flex', width:'100%'}}>
                 <Dropzone onDrop={onDrop}>
                     {({ getRootProps, getInputProps }) => (

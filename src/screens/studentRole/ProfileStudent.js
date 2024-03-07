@@ -1,6 +1,6 @@
 import React from 'react';
-import HeaderStudent from '../components/HeaderStudent';
-import Footer from '../components/Footer';
+import HeaderStudent from '../../components/HeaderStudent';
+import Footer from '../../components/Footer';
 
 const ProfileStudent = () => {
     // Sample data (replace with your actual data)
@@ -20,6 +20,7 @@ const ProfileStudent = () => {
 
             <div className="line"></div>
 
+            <h1>Profile</h1>
             <div className="profile-container">
                 <img src={profileData.avatar} alt="Profile Avatar" className="avatar-profile" />
                 <div className="profile-info">
