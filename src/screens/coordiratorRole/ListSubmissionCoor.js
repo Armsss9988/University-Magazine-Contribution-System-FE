@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css";
 import Footer from "../../components/Footer";
-import HeaderStudent from "../../components/HeaderStudent";
+import HeaderCoor from "../../components/HeaderCoor";
 
 function ListSubmissionCoor() {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +19,7 @@ function ListSubmissionCoor() {
 
     return (
         <div className="container">
-            <HeaderStudent/>
+            <HeaderCoor/>
 
             <div className="line"></div>
 
@@ -37,7 +37,7 @@ function ListSubmissionCoor() {
                         <text style={{ marginLeft: '20px' }}>2 files submited</text>
                     </div>
 
-                    <a href="/detailsubmission">
+                    <a href="/detailcoorsub">
                         <button style={{ marginRight: '20px' }}>Detail</button>
                     </a>
 
