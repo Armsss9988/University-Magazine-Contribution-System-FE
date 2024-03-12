@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "../styles.css";
 import Footer from "../../components/Footer";
 import HeaderStudent from "../../components/HeaderStudent";
 

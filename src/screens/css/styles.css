@@ -391,3 +391,19 @@ input {
   button:hover {
     background-color: #333;
   }
+
+  /* Table for view fac */
+  table {
+    width: 500px; /* Chiều rộng table */
+    border-collapse: collapse; /* Gộp các đường viền */
+  }
+  
+  th, td {
+    border: 1px solid #ddd; /* Đường viền cho header và cell */
+    padding: 8px; /* Khoảng cách giữa nội dung và viền */
+    text-align: center;
+  }
+  
+  th {
+    text-align: center; /* Căn giữa text header */
+  }

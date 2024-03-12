@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './styles.css';
 
 const MagazineGd = () => {
     const [articles, setArticles] = useState([

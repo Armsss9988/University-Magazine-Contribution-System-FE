@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../screens/styles.css";
+import "../screens/css/styles.css";
 
 function Avatar() {
 

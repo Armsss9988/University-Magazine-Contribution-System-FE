@@ -15,6 +15,15 @@ import ProfileStudent from "./screens/studentRole/ProfileStudent";
 import EditProfileStudent from "./screens/studentRole/EditProfileStudent";
 import CoordiratorHome from "./screens/coordiratorRole/CoordiratorHome";
 import ListSubmissionCoor from "./screens/coordiratorRole/ListSubmissionCoor";
+import DetailSubmissionCoor from "./screens/coordiratorRole/DetailSubmissionCoor";
+import HomeAdmin from "./screens/admin/HomeAdmin";
+import ViewFaculty from "./screens/admin/faculties/ViewFaculties";
+import CreateFaculty from "./screens/admin/faculties/CreateFaculties";
+import EditFaculty from "./screens/admin/faculties/EditFaculties";
+import SemesterList from "./screens/admin/semesterManager/SemesterList";
+import CreateSemester from "./screens/admin/semesterManager/CreateSemester";
+import CreateAccount from "./screens/admin/manageraccount/CreateAccount";
+import ListAccount from "./screens/admin/manageraccount/ListAccount";
 
 
 function App() {
@@ -37,8 +46,18 @@ function App() {
         <Route path="/studenthome" element={<StudentHome />} />
         <Route path="/coordiratorhome" element={<CoordiratorHome />} />
         <Route path="/listcoorsub" element={<ListSubmissionCoor />} />
+        <Route path="/detailcoorsub" element={<DetailSubmissionCoor />} />
+        <Route path="/adminhome" element={<HomeAdmin />} />
+        <Route path="/viewfaculty" element={<ViewFaculty />} />
+        <Route path="/newfaculty" element={<CreateFaculty />} />
+        <Route path="/editfaculty" element={<EditFaculty />} />
+        <Route path="/listaccount" element={<ListAccount />} />
+        <Route path="/semester" element={<SemesterList />} />
+        <Route path="/createsemester" element={<CreateSemester />} />
+        <Route path="/createaccount" element={<CreateAccount />} />
       </Routes>
     </BrowserRouter>
+ 
     );
 }
 

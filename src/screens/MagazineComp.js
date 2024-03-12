@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './styles.css';
 import Footer from '../components/Footer';
 
 const MagazineComp = () => {
