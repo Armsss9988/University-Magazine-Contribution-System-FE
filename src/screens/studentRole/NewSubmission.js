@@ -3,51 +3,75 @@ import Dropzone from 'react-dropzone';
 import Avatar from '../../components/Avatar';
 import HeaderStudent from '../../components/HeaderStudent';
 import Footer from '../../components/Footer';
+import { Button, Container, Form } from 'react-bootstrap';
+import TermCondition from '../../components/TermCondition'
+
 const NewSubmisson = () => {
     const [files, setFiles] = useState([]);
 
     const onDrop = (acceptedFiles) => {
         setFiles([...files, ...acceptedFiles]);
     };
+    const [validated, setValidated] = useState(false);
+
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        setValidated(true);
+    }
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <div className="container">
-            <HeaderStudent/>
+            <HeaderStudent />
 
             <div className="line"></div>
 
-            <h1>New Submission</h1>
-            <div className='main-content' style={{paddingLeft:'50px', paddingRight:'50px', alignItems:'center', display:'flex', flexDirection:'column', justifyContent:'center'}}>
-            
-            <div style={{border:'1px solid black', borderRadius:'20px', justifyContent:'center', display:'flex', width:'100%'}}>
-                <Dropzone onDrop={onDrop}>
-                    {({ getRootProps, getInputProps }) => (
-                        <div {...getRootProps()} className="dropzone" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-                            <input {...getInputProps()} />
-                            <p>Kéo và thả file Word hoặc ảnh vào đây</p>
-                            <p>(Hoặc click để chọn file)</p>
-                        </div>
-                    )}
-                </Dropzone>
-                <ul>
-                    {files.map((file) => (
-                        <li key={file.name}>{file.name}</li>
-                    ))}
-                </ul>
-            </div>
-
-            <div style={{ width: '100%', textAlign: 'center' }}>
-                <a href="/newsubmission">
-                    <button style={{ textAlign: 'center' }}>
+            <Container>
+                <h1>New Submission</h1>
+                <Form noValidate validated={validated} method='post'
+                    onSubmit={handleSubmit}>
+                    <Form.Group
+                        className="mb-3">
+                        <Form.Label>Choose file</Form.Label>
+                        <Form.Control
+                            required='true'
+                            type="file" />
+                    </Form.Group>
+                    <Form.Group
+                        className="mb-3">
+                        <Form.Check
+                            required='true'
+                            label={
+                                <>
+                                    I read and agreed to <span className='term-and-condition' onClick={handleShow}>terms and conditions</span>.
+                                </>
+                            }
+                            feedback="You must agree before submitting."
+                            feedbackType="invalid"
+                        />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
                         Submit
-                    </button>
-                </a>
-            </div>
-            </div>
+                    </Button>
+                </Form>
+            </Container>
 
-            {/* <div className="line"></div> */}
-            <Footer/>
-        </div>
+            <Footer />
+
+            <TermCondition
+                show={show}
+                onHide={handleClose}
+            />
+        </div >
     );
 };
 

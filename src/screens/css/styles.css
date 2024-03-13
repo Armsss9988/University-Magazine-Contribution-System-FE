@@ -1,3 +1,8 @@
+.term-and-condition {
+  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+  text-decoration: underline;
+}
+
 /* Container and footer */
 .container {
     display: flex;
@@ -110,7 +115,7 @@ header {
     flex-direction: column;
 }
 
-input {
+.my-input {
     width: 300px;
     height: 25px;
     border-radius: 10px;
