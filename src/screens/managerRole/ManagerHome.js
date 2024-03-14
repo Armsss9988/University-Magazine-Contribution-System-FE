@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./styles.css";
-import Footer from "../components/Footer";
-import HeaderGuess from "../components/HeaderGuess";
-
-function HomeScreen() {
+import "../styles.css";
+import Footer from "../../components/Footer";
+import HeaderManger from "../../components/HeaderManger";
+function ManagerHome() {
     
 
     return (
         <div className="container">
-            <HeaderGuess/>
+            <HeaderManger/>
 
             <div className="line"></div>
 
@@ -20,10 +19,7 @@ function HomeScreen() {
             <div className="line"></div>
             <Footer/>
         </div>
-
-
-
     );
 }
 
-export default HomeScreen
+export default ManagerHome

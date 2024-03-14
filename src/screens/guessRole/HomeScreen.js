@@ -1,0 +1,26 @@
+import React, { useState, useEffect } from "react";
+import "../styles.css";
+import Footer from "../../components/Footer";
+import HeaderGuess from "../../components/HeaderGuess";
+
+function HomeScreen() {
+    
+
+    return (
+        <div className="container">
+            <HeaderGuess/>
+
+            <div className="line"></div>
+
+            <div>
+                <img className="blogimg"
+                    src="https://cms.greenwich.edu.vn/pluginfile.php/1/theme_adaptable/p1/1698976651/socialbg.png"
+                    alt="Logo" />
+            </div>
+            <div className="line"></div>
+            <Footer/>
+        </div>
+    );
+}
+
+export default HomeScreen

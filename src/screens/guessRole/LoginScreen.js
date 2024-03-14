@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./styles.css";
-import Footer from "../components/Footer";
+import "../styles.css";
+import Footer from "../../components/Footer";
 
 function LoginScreen() {
     const [username, setUsername] = useState('');

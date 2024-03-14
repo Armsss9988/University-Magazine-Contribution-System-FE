@@ -35,11 +35,9 @@ function HeaderStudent() {
                     <h2 className="a" style={{ fontSize: '20px', fontWeight: "normal" }}>Contact</h2>
                 </a>
             </div>
-
             <div>
-                <Avatar />
+                <Avatar/>
             </div>
-
         </header>
     );
 }
