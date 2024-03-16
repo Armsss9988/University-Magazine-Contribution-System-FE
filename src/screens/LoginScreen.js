@@ -7,9 +7,9 @@ function LoginScreen() {
         email: "",
         password: "",
     });
-    const [users,setUsers] = useState(null);
-    const[roles, setRoles] = useState('');
-    const[name, setName] = useState("");
+    //const [users,setUsers] = useState(null);
+    //const[roles, setRoles] = useState('');
+    const [name, setName] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
 
@@ -29,20 +29,26 @@ function LoginScreen() {
             });
 
             
+
+
             // Process the API response
             setSuccess(true);
             setError(null);
             // window.location.href = "/";
+           
+            // console.log("API Response:", response.data);
+            // console.log("Role: ", response.data.role);
+           
             console.log("API Response:", response.data);
             console.log(formData.email, formData.password);
-            
+
         } catch (error) {
             // Handle API error
             setSuccess(false);
             setError("Login failed");
             window.alert('Login failed. Please check your username and password.');
             console.error("API Error:", error);
-            
+
         }
     };
 
@@ -50,13 +56,13 @@ function LoginScreen() {
         try {
             const response = await userAPI.profileUser({
             });
-            setUsers(response.data.user);
-            setRoles(response.data.user['role'])
+            //setUsers(response.data.user);
+            //setRoles(response.data.user['role'])
+            const users = response.data.user;
+            const roles = response.data.user['role'];
 
-      
 
-            
-            
+
             // Process the API response
             setSuccess(true);
             setError(null);
@@ -65,28 +71,32 @@ function LoginScreen() {
                 window.location.href = '/coordiratorhome';
               } else if (roles === 'admin') {
                 window.location.href = '/adminhome';
+              }else if (roles === 'student') {
+                window.location.href = '/studenthome';
+              }else if (roles === 'manager') {
+                window.location.href = '/managerhome';
               }
             // console.log("API Response:", response.data);
             // console.log("Role: ", response.data.role);
             console.log("User info: ", users);
             console.log("Role: ", roles);
-            
+
         } catch (error) {
             // Handle API error
             setSuccess(false);
             setError("Login failed");
-            window.alert('Login failed. Please check your username and password.');
+            window.alert('Profile failed');
             console.error("API Error:", error);
         }
     };
 
-    
 
-    const handleSubmit = (event) => {
+
+    const handleSubmit = async (event) => {
         event.preventDefault(); // Ngăn chặn hành vi mặc định của form
         // Gửi dữ liệu username và password đến API hoặc xử lý đăng nhập
-        loginUser();
-        profileUser();
+         loginUser();
+         profileUser();
     };
 
 
@@ -125,9 +135,9 @@ function LoginScreen() {
                             onChange={handleChange}
                             required />
                         <text style={{ fontSize: "12px" }}>Forgot password?</text>
-                        
 
-                            <button className="loginbtn" type="submit">Login</button>
+
+                        <button className="loginbtn" type="submit">Login</button>
 
                     </form>
                 </div>

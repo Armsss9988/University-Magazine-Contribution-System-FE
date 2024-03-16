@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Redirect } from 'react-router-dom';
 import MagazineComp from "./screens/MagazineComp";
 import MagazineBus from "./screens/MagazineBus";
 import MagazineGd from "./screens/MagazineGd";
@@ -27,10 +27,10 @@ import ListAccount from "./screens/admin/manageraccount/ListAccount";
 
 
 function App() {
-    
 
-    return (
-        <BrowserRouter>
+
+  return (
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/login" element={<LoginScreen />} />
@@ -47,7 +47,15 @@ function App() {
         <Route path="/coordiratorhome" element={<CoordiratorHome />} />
         <Route path="/listcoorsub" element={<ListSubmissionCoor />} />
         <Route path="/detailcoorsub" element={<DetailSubmissionCoor />} />
-        <Route path="/adminhome" element={<HomeAdmin />} />
+        <Route path="/adminhome">
+          {({ location }) => {
+            if (isAuthorized()) {
+              return <HomeAdmin />;
+            } else {
+              return <Redirect to={{ pathname: '/login', state: { from: location } }} />;
+            }
+          }}
+        </Route>
         <Route path="/viewfaculty" element={<ViewFaculty />} />
         <Route path="/newfaculty" element={<CreateFaculty />} />
         <Route path="/editfaculty" element={<EditFaculty />} />
@@ -57,8 +65,8 @@ function App() {
         <Route path="/createaccount" element={<CreateAccount />} />
       </Routes>
     </BrowserRouter>
- 
-    );
+
+  );
 }
 
 export default App

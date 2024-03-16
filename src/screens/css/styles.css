@@ -407,3 +407,8 @@ input {
   th {
     text-align: center; /* Căn giữa text header */
   }
+
+  /* active */
+  .active{
+    background-color: red;
+  }

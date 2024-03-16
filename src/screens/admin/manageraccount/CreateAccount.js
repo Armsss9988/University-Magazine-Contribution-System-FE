@@ -11,8 +11,8 @@ const CreateAccount = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [role, setRole] = useState('');
-    const [faculty, setFaculty] = useState('');
+    const [role, setRole] = useState('Student');
+    const [faculty, setFaculty] = useState('Information Technology');
     const [errorMessage, setErrorMessage] = useState(''); // For error handling
 
     const handleSubmit = async (event) => {
