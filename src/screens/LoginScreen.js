@@ -95,8 +95,8 @@ function LoginScreen() {
     const handleSubmit = async (event) => {
         event.preventDefault(); // Ngăn chặn hành vi mặc định của form
         // Gửi dữ liệu username và password đến API hoặc xử lý đăng nhập
-         loginUser();
-         profileUser();
+         await loginUser();
+         await profileUser();
     };
 
 

@@ -13,10 +13,20 @@ const semesterAPI = {
 
   
 };
-const userAPI = {
-  registerUser: (userData) => {
-    return axiosClient.post("/user/register", userData);
+
+const submissionAPI = {
+  createSubmission: (submissionData) => {
+    return axiosClient.post("/submission", submissionData);
   },
+
+  listSubmission: () => {
+    return axiosClient.get("submission/list/data");
+  },
+  
+};
+
+const userAPI = {
+  
 
   loginUser: (loginData) => {
     return axiosClient.post("/user/login", loginData);
@@ -33,8 +43,8 @@ const userAPI = {
   createUser: (createData) => {
     return axiosClient.post("/user/signup", createData);
   },
-  allUser: (allData) => {
-    return axiosClient.get("/user/list/all", allData);
+  allUser: () => {
+    return axiosClient.get("/user/list/all");
   },
   facultyUser: (facultyData) => {
     return axiosClient.get("/user/list/faculty", facultyData);
@@ -42,6 +52,7 @@ const userAPI = {
   deleteUser: (id) => {
     return axiosClient.delete(`/user/delete/${id}`);
   },
+
 };
 
-export { userAPI, semesterAPI };
+export { userAPI, semesterAPI, submissionAPI };

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../screens/css/styles.css";
 import Avatar from "./Avatar";
+import { Link } from "react-router-dom"
+
 
 function HeaderStudent() {
 
@@ -20,17 +22,19 @@ function HeaderStudent() {
             </div>
 
             <div className="menu">
-                <a href="/" style={{textDecoration:'none'}}  >
-                    <h2 className="a" style={{
-                        fontSize: '20px', fontWeight: "normal",
-                    }}>Home</h2>
-                </a>
-                <a href="/listsubmission" style={{ textDecoration: "none" }} >
-                    <h2 className="a" style={{
+            <p >
+                    <Link style={{
+                        fontSize: '20px', fontWeight: "normal", textDecoration:'none', color: 'black'
+                    }} to="/studenthome">Home</Link>
+                </p>
+                <p >
+                    <Link style={{
                         fontSize: '20px', fontWeight: "normal", marginRight: '100px',
-                        marginLeft: '100px', color: 'black'
-                    }}>My submission</h2>
-                </a>
+                        marginLeft: '100px', color: 'black', textDecoration:'none'
+                    }} to="/listsubmission">My submission</Link>
+                </p>
+                
+                
                 
             </div>
 

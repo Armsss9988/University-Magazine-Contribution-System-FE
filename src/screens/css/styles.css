@@ -177,79 +177,7 @@ input {
     color: black;
 }
 
-/* Student home */
 
-
-.box-list-course {
-    width: 100%;
-    height: 100px;
-    border: 3px solid black;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Student detail */
-.sub-box {
-    border: 1px solid black;
-
-}
-
-.detail-item {
-    height: 50px;
-    background-color: white;
-    border-bottom: 1px solid black;
-    display: flex;
-    flex-direction: row;
-}
-
-.comment-item {
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-}
-
-.title-item {
-    width: 300px;
-    border-right: 1px solid black;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-}
-
-.result-item {
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-/* Student list */
-.box-list {
-    width: 100%;
-    height: 100px;
-    border: 3px solid black;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Student edit */
-.box-list-edit {
-    width: 100%;
-    height: 100px;
-    border: 1px solid black;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
 
 /* Avatar */
 .dropdown-content-ava {
@@ -412,3 +340,260 @@ input {
   .active{
     background-color: red;
   }
+
+
+
+
+
+
+
+
+
+
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+  /* Student role */
+  /* diglog terms */
+  /* New Sub */
+  .dialog-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 999; /* Đảm bảo dialog hiển thị trên tất cả các phần khác của trang */
+}
+
+.dialog {
+    text-align: center;
+}
+
+.dialog h2 {
+    margin-bottom: 10px;
+}
+
+.dialog pre {
+    font-size: 14px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    
+}
+
+
+.form-container input[type="text"],
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-container button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+.dropzone-content{
+  text-align: center;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.dropzone p {
+    margin-bottom: 10px;
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  margin-left: 8px; /* Để tạo khoảng cách giữa checkbox và văn bản */
+}
+
+.checkbox{
+  width: 15px;
+}
+.text-terms{
+  color: #007bff;
+}
+
+
+/* List Sub */
+
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box-list {
+  display: flex;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 80%;
+}
+
+.files-column,
+.status-column {
+  flex: 1;
+}
+
+.files-column {
+  margin-right: 20px;
+}
+
+h3 {
+  margin-bottom: 5px;
+}
+
+p {
+  margin: 0;
+}
+
+.centered-button {
+  margin-top: 20px;
+}
+
+/* Student home */
+
+
+.box-list-course {
+  width: 100%;
+  height: 100px;
+  border: 3px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Student detail */
+.sub-box {
+  border: 1px solid black;
+
+}
+
+.detail-item {
+  height: 50px;
+  background-color: white;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: row;
+}
+
+.comment-item {
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+}
+
+.title-item {
+  width: 300px;
+  border-right: 1px solid black;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.result-item {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Student list */
+.box-list {
+  width: 100%;
+  height: 100px;
+  border: 3px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Student edit */
+.box-list-edit {
+  width: 100%;
+  height: 100px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* Forbidden */
+.forbidden-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.error-page {
+  text-align: center;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title-for {
+  font-size: 36px;
+  color: #e74c3c;
+  margin-bottom: 10px;
+}
+
+.for-p {
+  font-size: 18px;
+  color: #333;
+}
+

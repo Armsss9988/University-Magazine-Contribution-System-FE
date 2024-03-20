@@ -11,7 +11,7 @@ const CreateAccount = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [role, setRole] = useState('Student');
+    const [role, setRole] = useState('student');
     const [faculty, setFaculty] = useState('Information Technology');
     const [errorMessage, setErrorMessage] = useState(''); // For error handling
 
