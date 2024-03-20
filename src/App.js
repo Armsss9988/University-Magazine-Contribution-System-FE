@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import MagazineComp from "./screens/MagazineComp";
-import MagazineBus from "./screens/MagazineBus";
-import MagazineGd from "./screens/MagazineGd";
+import MagazineComp from "./screens/guessRole/MagazineComp";
+import MagazineBus from "./screens/guessRole/MagazineBus";
+import ContactUS from "./screens/guessRole/ContactUS";
+import MagazineGd from "./screens/guessRole/MagazineGd";
 import StudentHome from "./screens/studentRole/StudentHome";
 import DetailSubmission from "./screens/studentRole/DetailSubmission";
 import ListSubmission from "./screens/studentRole/ListSubmission";
@@ -25,7 +25,16 @@ import CreateSemester from "./screens/admin/semesterManager/CreateSemester";
 import CreateAccount from "./screens/admin/manageraccount/CreateAccount";
 import ListAccount from "./screens/admin/manageraccount/ListAccount";
 import ForbiddenPage from "./screens/ForbiddenPage";
+import HomeScreen from "./screens/guessRole/HomeScreen";
 import { userAPI } from "./api/api";
+import ManagerHome from "./screens/managerRole/ManagerHome";
+import ManagerMgzBus from "./screens/managerRole/ManagerMgzBus";
+import ManagerMgzGd from "./screens/managerRole/ManagerMgzGd";
+import ManagerMgzCom from "./screens/managerRole/ManagerMgzCom";
+import NewMagazine from "./screens/managerRole/NewMagazine";
+import DownloadFileZip from "./components/DownloadFileZip";
+import Dashboard from "./screens/managerRole/Dashboard";
+import { BarChart } from '@mui/x-charts/BarChart';
 
 
 
@@ -73,6 +82,7 @@ function App() {
         <Route path="/magazinecomp" element={<MagazineComp />} />
         <Route path="/magazinebus" element={<MagazineBus />} />
         <Route path="/magazinegd" element={<MagazineGd />} />
+        <Route path="/contact" element={<ContactUS />} />
         {/* Student role */}
         <Route path="/detailsubmission" element={checkStudentRole() ? <DetailSubmission /> : <ForbiddenPage />} />
         <Route path="/listsubmission" element={checkStudentRole() ? <ListSubmission /> : <ForbiddenPage />} />
@@ -94,6 +104,14 @@ function App() {
         <Route path="/semester" element={checkAdminRole() ? <SemesterList /> : <ForbiddenPage />} />
         <Route path="/createsemester" element={checkAdminRole() ? <CreateSemester /> : <ForbiddenPage />} />
         <Route path="/createaccount" element={checkAdminRole() ? <CreateAccount /> : <ForbiddenPage />} />
+        {/* Manager */}
+        <Route path="/managerhome" element={checkAdminRole() ? <ManagerHome /> : <ForbiddenPage />} />
+        <Route path="/managermgzbus" element={checkAdminRole() ? <ManagerMgzBus /> : <ForbiddenPage />} />
+        <Route path="/managermgzcomp" element={checkAdminRole() ? <ManagerMgzCom /> : <ForbiddenPage />} />
+        <Route path="/managermgzgd" element={checkAdminRole() ? <ManagerMgzGd /> : <ForbiddenPage />} />
+        <Route path="/newmagazine" element={checkAdminRole() ? <NewMagazine /> : <ForbiddenPage />} />
+        <Route path="/download" element={checkAdminRole() ? <DownloadFileZip /> : <ForbiddenPage />} />
+        <Route path="/dashboard" element={checkAdminRole() ? <Dashboard /> : <ForbiddenPage />} />
       </Routes>
     </BrowserRouter>
 

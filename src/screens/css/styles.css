@@ -597,3 +597,78 @@ p {
   color: #333;
 }
 
+
+
+
+/* Magazine Post */
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.w-full {
+  float: center;
+  width: 100%;
+}
+
+/* Fake image */
+.fakeimg {
+}
+
+/* Add a card effect for articles */
+.card-magazine {
+  border: 2px solid black; /*Chỉnh màu background đây */
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Clear floats after the columns */
+.row-mg:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.body-magazine {
+  flex: 1 1 auto;
+  padding: 20px;
+}
+/* Contact Us */
+.contact-us{
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 auto;
+}
+.contact-img{
+  width: 100%;
+}
+.t-contact{
+  font-size: 60px;
+}
+.information{
+  font-size: 40px;
+  font-weight:70px;
+}
+/*Dashboard*/
+
+.dashboard{
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+}
+.title-dash{
+
+}
+.barchart,
+.pie-chart {
+  flex: 1; /* Phần tử con sẽ chiếm toàn bộ không gian còn lại */
+  margin-right: 20px; /* Khoảng cách giữa các phần tử con */
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
