@@ -23,9 +23,9 @@ const EditFaculty = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await axios.put(`/api/faculties/${match.params.id}`, faculty);
-    // Redirect to faculty list page after successful update
-    window.location.href = '/faculties';
+    // await axios.put(`/api/faculties/${match.params.id}`, faculty);
+    // // Redirect to faculty list page after successful update
+    // window.location.href = '/faculties';
   };
 
   return (
