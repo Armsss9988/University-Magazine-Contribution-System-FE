@@ -5,6 +5,7 @@ import Avatar from "./Avatar";
 import { CookiesProvider, useCookies } from 'react-cookie';
 import Logout from "./Logout";
 import A from "./Logout";
+import LogoutButton from "./Logout";
 
 
 function HeaderAdmin() {
@@ -84,7 +85,7 @@ function HeaderAdmin() {
             </div>
 
             <div>
-      <A/>
+                <LogoutButton />
 
             </div>
 

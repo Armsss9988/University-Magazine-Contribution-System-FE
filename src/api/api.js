@@ -6,11 +6,42 @@ const axiosClient = axios.create({
   baseURL,
   withCredentials: true,
 });
+
+const facultyAPI = {
+  createFaculty: (facultyData) => {
+    return axiosClient.post("/faculty", facultyData);
+  },
+
+  getFacultyById: (id) => {
+    return axiosClient.get(`/faculty/${id}`);
+  },
+
+  listFaculty: () => {
+    return axiosClient.get("/faculty");
+  },
+  
+  deleteFaculty: (id) => {
+    return axiosClient.delete(`/faculty/${id}`);
+  },
+
+  editFaculty: (id, facultyData) => {
+    return axiosClient.put(`/faculty/${id}`, facultyData);
+  },
+};
+
+
 const semesterAPI = {
   createSemester: (semesterData) => {
     return axiosClient.post("/semester", semesterData);
   },
 
+  listSemester: () => {
+    return axiosClient.get("/semester", );
+  },
+  
+  deleteSemester: (id) => {
+    return axiosClient.delete(`/semester/${id}`);
+  },
   
 };
 
@@ -55,4 +86,4 @@ const userAPI = {
 
 };
 
-export { userAPI, semesterAPI, submissionAPI };
+export { userAPI, semesterAPI, submissionAPI, facultyAPI };

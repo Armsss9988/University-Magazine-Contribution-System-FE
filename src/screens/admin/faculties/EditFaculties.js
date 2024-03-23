@@ -1,51 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation  } from 'react-router-dom'; // Import useParams
 import HeaderAdmin from '../../../components/HeaderAdmin';
 import Footer from '../../../components/Footer';
+import { facultyAPI } from '../../../api/api';
 
 const EditFaculty = () => {
-  const [faculty, setFaculty] = useState({
-    code: '',
-    name: '',
-  });
+  const [faculty, setFaculty] = useState({ name: ""});
+  const location = useLocation(); // Get id from URL
+  const {id} = location.state;
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const { data } = await axios.get(`/api/faculties/${match.params.id}`);
-  //     setFaculty(data);
-  //   };
-  //   fetchData();
-  // }, [match.params.id]);
+  const fetchData = async () => {
+    try {
+      const response = await facultyAPI.getFacultyById(id); // Assuming you have an API function to get faculty by id
+      const { data } = response;
+      setFaculty(data);
+      console.log("data: " +  faculty);
+    } catch (error) {
+      console.error('Error fetching faculty data:', error);
+    }
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFaculty({ ...faculty, [name]: value });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event)  => {
     event.preventDefault();
-    // await axios.put(`/api/faculties/${match.params.id}`, faculty);
-    // // Redirect to faculty list page after successful update
-    // window.location.href = '/faculties';
+    console.log("Submited");
+    try {
+      const response = await facultyAPI.editFaculty(id, faculty);
+      window.alert(response.data.message);
+      // Handle successful update, redirect, or other actions
+    } catch (error) {
+      console.error('Error updating faculty:', error);
+    }
   };
 
   return (
     <div className="container">
       <HeaderAdmin/>
       <div style={{flex:'1 1 auto', display:'flex', justifyContent:'center'}}>
-      <div style={{ width:'500px', display:'flex', flexDirection:'column',  padding:'20px'}}>
-      <h1>Edit Faculty</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="code">Code:</label>
-        <input type="text" id="code" name="code" value={faculty.code} onChange={handleChange} />
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" value={faculty.name} onChange={handleChange} />
-        <div style={{justifyContent:'center', display:'flex'}}> 
-        <button type="submit">Save</button>
+        <div style={{ width:'500px', display:'flex', flexDirection:'column',  padding:'20px'}}>
+          <h1>Edit Faculty</h1>
+          <form onSubmit={handleSubmit  }>
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" name="name" value={faculty.name} onChange={handleChange} />
+            <div style={{justifyContent:'center', display:'flex'}}> 
+              <button type="submit">Save</button>
+            </div>
+          </form>
         </div>
-      </form>
       </div>
-    </div>
-    <Footer/>
+      <Footer/>
     </div>
   );
 };
