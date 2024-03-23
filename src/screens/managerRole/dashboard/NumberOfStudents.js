@@ -1,15 +1,25 @@
-import React from 'react';
 import '../../css/styles.css';
+import React, { useState, useEffect } from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import Footer from '../../../components/Footer';
 import HeaderManger from "../../../components/HeaderManger";
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { dashboardAPI } from '../../../api/api';
 import Select from 'react-select';
 
 function NumberOfStudents() {
+    const [contributors, setContributors] = useState([]);
+
+    useEffect(() => {
+        fetchData();
+      }, []);
+    
+      const fetchData = async () => {
+        const {data} = await dashboardAPI.contributors();
+        setContributors(data);
+        console.log(data);
+      }
     const dataset = [
-        { month: 'Jan', london: 100, paris: 200, newYork: 250, seoul: 150 },
-        // Add more data points here...
+        {contributors,faculty : "faculty"}
     ];
 
     const chartSetting = {
@@ -39,7 +49,7 @@ function NumberOfStudents() {
             xAxis={[
                 {
                     scaleType: 'band',
-                    dataKey: 'month',
+                    dataKey: 'faculty',
                 }
             ]}
             series={[

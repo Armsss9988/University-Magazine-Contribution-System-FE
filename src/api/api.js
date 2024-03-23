@@ -85,5 +85,19 @@ const userAPI = {
   },
 
 };
+const dashboardAPI = {
+  contributors: (submissionData) => {
+    return axiosClient.get("/dashboard/contributors", submissionData);
+  },
 
-export { userAPI, semesterAPI, submissionAPI, facultyAPI };
+  contributions: () => {
+    return axiosClient.get("/dashboard/submissions");
+  },
+  percentage: () => {
+    return axiosClient.get("/dashboard/percentage");
+  },
+
+  
+};
+
+export { userAPI, semesterAPI, submissionAPI, facultyAPI,dashboardAPI };
