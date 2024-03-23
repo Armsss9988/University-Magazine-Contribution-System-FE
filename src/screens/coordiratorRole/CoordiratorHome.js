@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../css/styles.css";
-import Avatar from "../../components/Avatar";
 import Footer from '../../components/Footer';
 import HeaderCoor from "../../components/HeaderCoor";
 

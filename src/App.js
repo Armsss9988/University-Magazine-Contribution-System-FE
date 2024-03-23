@@ -11,8 +11,6 @@ import DetailSubmission from "./screens/studentRole/DetailSubmission";
 import ListSubmission from "./screens/studentRole/ListSubmission";
 import EditSubmission from "./screens/studentRole/EditSubmission";
 import NewSubmisson from "./screens/studentRole/NewSubmission";
-import ProfileStudent from "./screens/studentRole/ProfileStudent";
-import EditProfileStudent from "./screens/studentRole/EditProfileStudent";
 import CoordiratorHome from "./screens/coordiratorRole/CoordiratorHome";
 import ListSubmissionCoor from "./screens/coordiratorRole/ListSubmissionCoor";
 import DetailSubmissionCoor from "./screens/coordiratorRole/DetailSubmissionCoor";
@@ -76,6 +74,11 @@ function App() {
     return userRoles.includes('coordinator'); // For demonstration purpose, always return true
   };
 
+  const checkManagerRole = () => {
+    // Logic to check user role, return true for admin, false otherwise
+    return userRoles.includes('manager'); // For demonstration purpose, always return true
+  };
+
   return (
     <BrowserRouter>
       <Routes>
@@ -90,8 +93,6 @@ function App() {
         <Route path="/listsubmission" element={checkStudentRole() ? <ListSubmission /> : <ForbiddenPage />} />
         <Route path="/editsubmission" element={checkStudentRole() ? <EditSubmission /> : <ForbiddenPage />} />
         <Route path="/newsubmission" element={checkStudentRole() ? <NewSubmisson /> : <ForbiddenPage />} />
-        <Route path="/profilestudent" element={checkStudentRole() ? <ProfileStudent /> : <ForbiddenPage />} />
-        <Route path="/editprofilestudent" element={checkStudentRole() ? <EditProfileStudent /> : <ForbiddenPage />} />
         <Route path="/studenthome" element={checkStudentRole() ? <StudentHome /> : <ForbiddenPage />} />
         {/* Coordinator */}
         <Route path="/coordiratorhome" element={checkCoorRole() ? <CoordiratorHome /> : <ForbiddenPage />} />
@@ -107,15 +108,12 @@ function App() {
         <Route path="/createsemester" element={checkAdminRole() ? <CreateSemester /> : <ForbiddenPage />} />
         <Route path="/createaccount" element={checkAdminRole() ? <CreateAccount /> : <ForbiddenPage />} />
         {/* Manager */}
-        <Route path="/managerhome" element={checkAdminRole() ? <ManagerHome /> : <ForbiddenPage />} />
-        <Route path="/managermgzbus" element={checkAdminRole() ? <ManagerMgzBus /> : <ForbiddenPage />} />
-        <Route path="/managermgzcomp" element={checkAdminRole() ? <ManagerMgzCom /> : <ForbiddenPage />} />
-        <Route path="/managermgzgd" element={checkAdminRole() ? <ManagerMgzGd /> : <ForbiddenPage />} />
-        <Route path="/newmagazine" element={checkAdminRole() ? <NewMagazine /> : <ForbiddenPage />} />
-        <Route path="/download" element={checkAdminRole() ? <DownloadFileZip /> : <ForbiddenPage />} />
-        <Route path="/numberofstudents" element={checkAdminRole() ? <NumberOfStudents/> : <ForbiddenPage />} />
-        <Route path="/percentageofmgz" element={checkAdminRole() ? <PercentageOfMgz/> : <ForbiddenPage />} />
-        <Route path="/numberofmgz" element={checkAdminRole() ? <NumberOfMgz/> : <ForbiddenPage />} />
+        <Route path="/managerhome" element={checkManagerRole() ? <ManagerHome /> : <ForbiddenPage />} />
+        <Route path="/managermgzbus" element={checkManagerRole() ? <ManagerMgzBus /> : <ForbiddenPage />} />
+        <Route path="/managermgzcomp" element={checkManagerRole() ? <ManagerMgzCom /> : <ForbiddenPage />} />
+        <Route path="/managermgzgd" element={checkManagerRole() ? <ManagerMgzGd /> : <ForbiddenPage />} />
+        <Route path="/newmagazine" element={checkManagerRole() ? <NewMagazine /> : <ForbiddenPage />} />
+        <Route path="/download" element={checkManagerRole() ? <DownloadFileZip /> : <ForbiddenPage />} />
       </Routes>
     </BrowserRouter>
 

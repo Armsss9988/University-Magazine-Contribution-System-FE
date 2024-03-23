@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Avatar from "../../components/Avatar";
 import Footer from "../../components/Footer";
 import HeaderStudent from "../../components/HeaderStudent";
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
@@ -23,17 +22,7 @@ function ListSubmission() {
         fetchSubmissions();
     }, []);
 
-    // Hàm để split document_path thành ba phần _id, student và tên file
-    const getFileNameFromPath = (documentPath) => {
-        // Tách documentPath thành các phần tử dựa vào dấu '/'
-        const parts = documentPath.split('/');
-        // Lấy phần tử cuối cùng của mảng là tên file
-        const fileNameWithExtension = parts[parts.length - 1];
-        // Tách tên file và phần mở rộng bằng cách tách chuỗi theo dấu '.'
-        const [fileName, extension] = fileNameWithExtension.split('.');
-        // Trả về tên file
-        return fileName;
-    };
+
     
     
     
@@ -52,7 +41,7 @@ function ListSubmission() {
                             <h3>Files</h3>
                             {/* <p>{submission._id}</p>
                             <p>{submission.student}</p> */}
-                            <p>{getFileNameFromPath(submission.document_path)}</p>
+                            <p>{(submission.document_path)}</p>
                         </div>
                         <div className="status-column">
                             <h3>Status</h3>

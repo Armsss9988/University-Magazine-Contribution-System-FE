@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../screens/css/styles.css";
-import Avatar from "./Avatar";
 import { Link } from "react-router-dom"
+import LogoutButton from "./Logout";
 
 function HeaderManger() {
 
@@ -72,7 +72,7 @@ function HeaderManger() {
                 </p>  
             </div>
             <div>
-                <Avatar />
+                <LogoutButton />
             </div>
         </header>
     );
