@@ -9,19 +9,19 @@ import { userAPI } from "../../../api/api";
 
 const ListAccount = () => {
   const [accounts, setAccounts] = useState([
-  
+
   ]);
 
-    useEffect(() => {
-      
-      fetchData();
-    }, []);
+  useEffect(() => {
 
-    const fetchData = async () => {
-      const { data } = await userAPI.allUser();
-      setAccounts(data.users);
-      console.log(accounts);
-    };
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const { data } = await userAPI.allUser();
+    setAccounts(data.users);
+    console.log(accounts);
+  };
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -45,15 +45,16 @@ const ListAccount = () => {
       <HeaderAdmin />
 
       <div style={{ flex: '1 1 auto' }}>
-        <h1>Manage Accounts</h1>
+        <h1>List Accounts</h1>
         {error && <p>Error: {error.message}</p>}
         {accounts.length > 0 && (
           <table className="table">
 
             <thead>
               <tr>
-              <th>ID</th>
+
                 <th>Email</th>
+                <th>Role</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -62,8 +63,8 @@ const ListAccount = () => {
               {accounts.map((account) => (
 
                 <tr>
-                  <td>{account._id}</td>
                   <td>{account.email}</td>
+                  <td>{account.role}</td>
 
                   <td>
                     <div style={{
@@ -99,12 +100,12 @@ const ListAccount = () => {
 
       </div>
       <div style={{ width: '100%', textAlign: 'center', margin: '10px' }}>
-                <a href="/createaccount">
-                    <button style={{ textAlign: 'center' }}>
-                        New Account
-                    </button>
-                </a>
-            </div>
+        <a href="/createaccount">
+          <button style={{ textAlign: 'center' }}>
+            New Account
+          </button>
+        </a>
+      </div>
 
 
       <Footer />

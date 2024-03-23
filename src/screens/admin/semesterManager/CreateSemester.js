@@ -11,7 +11,7 @@ const CreateSemester = () => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [closed, setClosed] = useState(false); // Checkbox for closed state (default: false)
-
+    const [showData, setShowData] = useState();
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -24,7 +24,8 @@ const CreateSemester = () => {
           });
 
           console.log('Semester created:', response.data);
-
+          setShowData(response.data);
+          window.alert('Successfully created a new semester!')
           // Xóa form data or chuyển hướng sang trang khác (tùy chọn)
           setName('');
           setStartDate('');
@@ -40,6 +41,7 @@ const CreateSemester = () => {
             <HeaderAdmin />
             <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <h2>Tạo học kỳ mới</h2>
+                
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="name">
                         <Form.Label>Academic Semester</Form.Label>

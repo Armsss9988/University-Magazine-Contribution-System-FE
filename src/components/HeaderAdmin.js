@@ -5,6 +5,7 @@ import Avatar from "./Avatar";
 import { CookiesProvider, useCookies } from 'react-cookie';
 import Logout from "./Logout";
 import A from "./Logout";
+import LogoutButton from "./Logout";
 
 
 function HeaderAdmin() {
@@ -53,6 +54,11 @@ function HeaderAdmin() {
         setIsActive(true);
     };
 
+    // const logout = () => {
+    //     cookies.removeItem('token'); // Remove the token from local storage
+    //     // Optionally remove other user data
+    //     window.location.href = '/login'; // Redirect to the login page
+    //   };
     return (
         <header>
             <div className="logoname">
@@ -79,7 +85,7 @@ function HeaderAdmin() {
             </div>
 
             <div>
-      <A/>
+                <LogoutButton />
 
             </div>
 

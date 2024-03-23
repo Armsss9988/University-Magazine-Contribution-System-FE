@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import LoginScreen from "./screens/LoginScreen";
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import MagazineComp from "./screens/guessRole/MagazineComp";
 import MagazineBus from "./screens/guessRole/MagazineBus";
 import ContactUS from "./screens/guessRole/ContactUS";

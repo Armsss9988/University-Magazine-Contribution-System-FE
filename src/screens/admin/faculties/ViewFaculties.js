@@ -1,22 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useHistory
 import HeaderAdmin from '../../../components/HeaderAdmin';
 import Footer from '../../../components/Footer';
 import DeleteConfirmationDialog from '../../../components/DeleteConfirmationDialog';
+import { facultyAPI } from '../../../api/api';
 
 const ViewFaculty = () => {
-  const [faculties, setFaculties] = useState([
-    { id: 1, code: 'COMP1787', name: 'Information Technology' },
-    { id: 2, code: 'COMP1786', name: 'Graphic Design' },
-    { id: 3, code: 'COMP1786', name: 'BUSINESS' },
-  ]);
-
+  const [faculties, setFaculties] = useState([]);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const navigate = useNavigate(); // Initialize useHistory
 
-  // ... your component logic
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const handleDelete = () => {
-    // Perform your actual deletion logic here
+  const fetchData = async () => {
+    try {
+      const { data } = await facultyAPI.listFaculty();
+      console.log(data); // Log data received from API
+      setFaculties(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    await facultyAPI.deleteFaculty(id);
     console.log('Item deleted!');
+    fetchData();
     setIsDeleteDialogOpen(false); // Close the dialog after deletion
   };
 
@@ -24,54 +35,50 @@ const ViewFaculty = () => {
     setIsDeleteDialogOpen(true);
   };
 
+  const handleEditClick = (id) => {
+    navigate(`/editfaculty/`,{ state: { id} }); // Navigate to edit page with faculty id
+  };
+
   return (
     <div className="container">
       <HeaderAdmin />
-
       <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h2>View Faculty</h2>
         <table className="table">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Code</th>
               <th>Name</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {faculties.map((faculty) => (
-              <tr key={faculty.id}>
-                <td>{faculty.id}</td>
-                <td>{faculty.code}</td>
+              <tr key={faculty._id}>
+                <td>{faculty._id}</td>
                 <td>{faculty.name}</td>
                 <td>
-                  <div style={{ width: '100%', textAlign: 'center', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'center', backgroundColor:'yellow' }}>
-                    <a href="/editfaculty">
-                      <button style={{ textAlign: 'center' }}>
-                        Edit
-                      </button>
-                    </a>
+                  <div style={{ width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'yellow' }}>
+                    <button style={{ textAlign: 'center' }} onClick={() => handleEditClick(faculty._id)}>
+                      Edit
+                    </button>
                     <div>
-                      {/* Your component content */}
                       <button onClick={handleDeleteClick}>Delete</button>
                       <DeleteConfirmationDialog
                         isOpen={isDeleteDialogOpen}
                         onClose={() => setIsDeleteDialogOpen(false)}
-                        onDelete={handleDelete}
-                        title="Delete Confirmation" // Optional: Customize title
-                        message="This action cannot be undone. Are you sure you want to delete?" // Optional: Customize message
+                        onDelete={() => handleDelete(faculty._id)}
+                        title="Delete Confirmation"
+                        message="This action cannot be undone. Are you sure you want to delete?"
                       />
                     </div>
                   </div>
                 </td>
-
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
       <div style={{ width: '100%', textAlign: 'center', margin: '10px' }}>
         <a href="/newfaculty">
           <button style={{ textAlign: 'center' }}>
@@ -79,8 +86,6 @@ const ViewFaculty = () => {
           </button>
         </a>
       </div>
-
-
       <Footer />
     </div>
   );

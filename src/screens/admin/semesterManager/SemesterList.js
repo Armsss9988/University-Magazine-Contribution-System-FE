@@ -3,10 +3,10 @@ import axios from 'axios';
 import HeaderAdmin from '../../../components/HeaderAdmin';
 import Footer from '../../../components/Footer';
 import DeleteConfirmationDialog from '../../../components/DeleteConfirmationDialog';
+import { semesterAPI } from '../../../api/api';
 
 const SemesterList = () => {
     const [semesters, setSemesters] = useState([
-        { id: 1, startday: '11/03/2024', endday: '11/07/2024', status: 'Opening', name: 'SUMMER 2024' },
     ]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -14,15 +14,17 @@ const SemesterList = () => {
 
     // ... your component logic
 
-    const handleDelete = () => {
+    const handleDelete = async (id) => {
+        await semesterAPI.deleteSemester(id);
         // Perform your actual deletion logic here
         console.log('Item deleted!');
+        fetchData();
         setIsDeleteDialogOpen(false); // Close the dialog after deletion
-    };
-
-    const handleDeleteClick = () => {
+      };
+    
+      const handleDeleteClick = () => {
         setIsDeleteDialogOpen(true);
-    };
+      };
 
     //   useEffect(() => {
     //     const fetchData = async () => {
@@ -43,6 +45,18 @@ const SemesterList = () => {
     //     fetchData();
     //   }, []);
 
+    useEffect(() => {
+
+        fetchData();
+      }, []);
+    
+      const fetchData = async () => {
+        const { data } = await semesterAPI.listSemester();
+        setSemesters(data);
+        console.log(semesters);
+      };
+      
+
     return (
         <div className='container'>
             <HeaderAdmin />
@@ -55,7 +69,6 @@ const SemesterList = () => {
 
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Start day</th>
                                 <th>End day</th>
                                 <th>Status</th>
@@ -66,12 +79,11 @@ const SemesterList = () => {
                         <tbody>
 
                             {semesters.map((semester) => (
-                                <tr key={semester.id}>
-                                    <td>{semester.id}</td>
-                                    <td>{semester.startday}</td>
-                                    <td>{semester.endday}</td>
-                                    <td>{semester.status}</td>
-                                    <td>{semester.name}</td>
+                                <tr key={semester._id}>
+                                    <td>{semester.start_date}</td>
+                                    <td>{semester.final_closure_date}</td>
+                                    <td>{semester.closed}</td>
+                                    <td>{semester.academic_year}</td>
                                     <td>
                                         <div style={{
                                             width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row',
@@ -88,7 +100,7 @@ const SemesterList = () => {
                                                 <DeleteConfirmationDialog
                                                     isOpen={isDeleteDialogOpen}
                                                     onClose={() => setIsDeleteDialogOpen(false)}
-                                                    onDelete={handleDelete}
+                                                    onDelete={() => handleDelete(semester._id)}
                                                     title="Delete Confirmation" // Optional: Customize title
                                                     message="This action cannot be undone. Are you sure you want to delete?" // Optional: Customize message
                                                 />
