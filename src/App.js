@@ -72,6 +72,11 @@ function App() {
     return userRoles.includes('coordinator'); // For demonstration purpose, always return true
   };
 
+  const checkManagerRole = () => {
+    // Logic to check user role, return true for admin, false otherwise
+    return userRoles.includes('manager'); // For demonstration purpose, always return true
+  };
+
   return (
     <BrowserRouter>
       <Routes>
@@ -101,13 +106,13 @@ function App() {
         <Route path="/createsemester" element={checkAdminRole() ? <CreateSemester /> : <ForbiddenPage />} />
         <Route path="/createaccount" element={checkAdminRole() ? <CreateAccount /> : <ForbiddenPage />} />
         {/* Manager */}
-        <Route path="/managerhome" element={checkAdminRole() ? <ManagerHome /> : <ForbiddenPage />} />
-        <Route path="/managermgzbus" element={checkAdminRole() ? <ManagerMgzBus /> : <ForbiddenPage />} />
-        <Route path="/managermgzcomp" element={checkAdminRole() ? <ManagerMgzCom /> : <ForbiddenPage />} />
-        <Route path="/managermgzgd" element={checkAdminRole() ? <ManagerMgzGd /> : <ForbiddenPage />} />
-        <Route path="/newmagazine" element={checkAdminRole() ? <NewMagazine /> : <ForbiddenPage />} />
-        <Route path="/download" element={checkAdminRole() ? <DownloadFileZip /> : <ForbiddenPage />} />
-        <Route path="/dashboard" element={checkAdminRole() ? <Dashboard /> : <ForbiddenPage />} />
+        <Route path="/managerhome" element={checkManagerRole() ? <ManagerHome /> : <ForbiddenPage />} />
+        <Route path="/managermgzbus" element={checkManagerRole() ? <ManagerMgzBus /> : <ForbiddenPage />} />
+        <Route path="/managermgzcomp" element={checkManagerRole() ? <ManagerMgzCom /> : <ForbiddenPage />} />
+        <Route path="/managermgzgd" element={checkManagerRole() ? <ManagerMgzGd /> : <ForbiddenPage />} />
+        <Route path="/newmagazine" element={checkManagerRole() ? <NewMagazine /> : <ForbiddenPage />} />
+        <Route path="/download" element={checkManagerRole() ? <DownloadFileZip /> : <ForbiddenPage />} />
+        <Route path="/dashboard" element={checkManagerRole() ? <Dashboard /> : <ForbiddenPage />} />
       </Routes>
     </BrowserRouter>
 
