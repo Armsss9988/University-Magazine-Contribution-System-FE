@@ -13,7 +13,7 @@ function NumberOfMgz() {
     ];
 
     const chartSetting = {
-        height: 500, // Thêm chiều cao 300px
+        height: 500, // Thêm chiều cao 500px
         width : 1000,
     };
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
@@ -29,7 +29,7 @@ function NumberOfMgz() {
         <HeaderManger/>
         <h1 style={{ fontSize: "50px" }}>Dashboard</h1>
         <div className='dropdown'>
-        <h2 style={{ fontSize: "20px" }}>Majors</h2>
+        <h2 style={{ fontSize: "20px" }}>Semester</h2>
          <Select options={options} />
          </div>
         <div className='dashboard'>     

@@ -29,7 +29,7 @@ function NumberOfStudents() {
         <HeaderManger/>
         <h1 style={{ fontSize: "50px" }}>Dashboard</h1>
         <div className='dropdown'>
-        <h2 style={{ fontSize: "20px" }}>Majors</h2>
+        <h2 style={{ fontSize: "20px" }}>Semester</h2>
          <Select options={options} />
          </div>
         <div className='dashboard'>     
