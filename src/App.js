@@ -108,12 +108,17 @@ function App() {
         <Route path="/createsemester" element={checkAdminRole() ? <CreateSemester /> : <ForbiddenPage />} />
         <Route path="/createaccount" element={checkAdminRole() ? <CreateAccount /> : <ForbiddenPage />} />
         {/* Manager */}
+
+        <Route path="/numberofstudents" element={checkManagerRole() ? <NumberOfStudents/> : <ForbiddenPage />} />
+        <Route path="/percentageofmgz" element={checkManagerRole() ? <PercentageOfMgz/> : <ForbiddenPage />} />
+        <Route path="/numberofmgz" element={checkManagerRole() ? <NumberOfMgz/> : <ForbiddenPage />} />
         <Route path="/managerhome" element={checkManagerRole() ? <ManagerHome /> : <ForbiddenPage />} />
         <Route path="/managermgzbus" element={checkManagerRole() ? <ManagerMgzBus /> : <ForbiddenPage />} />
         <Route path="/managermgzcomp" element={checkManagerRole() ? <ManagerMgzCom /> : <ForbiddenPage />} />
         <Route path="/managermgzgd" element={checkManagerRole() ? <ManagerMgzGd /> : <ForbiddenPage />} />
         <Route path="/newmagazine" element={checkManagerRole() ? <NewMagazine /> : <ForbiddenPage />} />
         <Route path="/download" element={checkManagerRole() ? <DownloadFileZip /> : <ForbiddenPage />} />
+  
       </Routes>
     </BrowserRouter>
 
