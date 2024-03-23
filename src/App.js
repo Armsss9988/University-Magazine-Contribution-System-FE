@@ -33,8 +33,10 @@ import ManagerMgzGd from "./screens/managerRole/ManagerMgzGd";
 import ManagerMgzCom from "./screens/managerRole/ManagerMgzCom";
 import NewMagazine from "./screens/managerRole/NewMagazine";
 import DownloadFileZip from "./components/DownloadFileZip";
-import Dashboard from "./screens/managerRole/Dashboard";
 import { BarChart } from '@mui/x-charts/BarChart';
+import NumberOfStudents from "./screens/managerRole/dashboard/NumberOfStudents";
+import PercentageOfMgz from "./screens/managerRole/dashboard/PercentageOfMgz";
+import NumberOfMgz from "./screens/managerRole/dashboard/NumberOfMgz";
 
 
 
@@ -111,7 +113,9 @@ function App() {
         <Route path="/managermgzgd" element={checkAdminRole() ? <ManagerMgzGd /> : <ForbiddenPage />} />
         <Route path="/newmagazine" element={checkAdminRole() ? <NewMagazine /> : <ForbiddenPage />} />
         <Route path="/download" element={checkAdminRole() ? <DownloadFileZip /> : <ForbiddenPage />} />
-        <Route path="/dashboard" element={checkAdminRole() ? <Dashboard /> : <ForbiddenPage />} />
+        <Route path="/numberofstudents" element={checkAdminRole() ? <NumberOfStudents/> : <ForbiddenPage />} />
+        <Route path="/percentageofmgz" element={checkAdminRole() ? <PercentageOfMgz/> : <ForbiddenPage />} />
+        <Route path="/numberofmgz" element={checkAdminRole() ? <NumberOfMgz/> : <ForbiddenPage />} />
       </Routes>
     </BrowserRouter>
 

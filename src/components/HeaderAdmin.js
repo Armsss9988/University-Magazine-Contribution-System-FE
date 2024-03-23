@@ -53,11 +53,6 @@ function HeaderAdmin() {
         setIsActive(true);
     };
 
-    const logout = () => {
-        cookies.removeItem('token'); // Remove the token from local storage
-        // Optionally remove other user data
-        window.location.href = '/login'; // Redirect to the login page
-      };
     return (
         <header>
             <div className="logoname">

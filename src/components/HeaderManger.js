@@ -48,6 +48,25 @@ function HeaderManger() {
                         </ul>
                     )}
                 </div>
+                
+                <div className="dropdown">
+                    <button onClick={toggleDropdown}>
+                        {selectedValue || 'Select an option'}
+                    </button>
+                    {isOpen && (
+                        <ul className="dropdown-content">
+                            <p>
+                                <Link to="/numberofstudents">Number Of Students</Link>
+                            </p>
+                            <p>
+                                <Link to="/numberofmgz">Number Of Magazine</Link>
+                            </p>
+                            <p>
+                                <Link to="/percentageofmgz">Percen Of Magazine</Link>
+                            </p>                   
+                        </ul>
+                    )}
+                </div>
                 <p>
                      <Link to="/newmagazine">New Magazine</Link>
                 </p>  

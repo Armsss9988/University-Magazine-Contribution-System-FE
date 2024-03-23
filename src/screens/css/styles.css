@@ -672,3 +672,6 @@ p {
   align-items: center;
   display: flex;
 }
+.dropdown{
+  font-size: 10x;
+}
