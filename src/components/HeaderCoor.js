@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../screens/css/styles.css";
-import Avatar from "./Avatar";
+import LogoutButton from "./Logout";
 
 function HeaderCoor() {
 
@@ -35,7 +35,7 @@ function HeaderCoor() {
             </div>
 
             <div>
-                <Avatar />
+                <LogoutButton />
             </div>
 
         </header>

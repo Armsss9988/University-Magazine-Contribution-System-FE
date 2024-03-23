@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Avatar from "../../components/Avatar";
 import Footer from "../../components/Footer";
 import HeaderStudent from "../../components/HeaderStudent";
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom

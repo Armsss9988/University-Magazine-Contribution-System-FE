@@ -11,8 +11,6 @@ import DetailSubmission from "./screens/studentRole/DetailSubmission";
 import ListSubmission from "./screens/studentRole/ListSubmission";
 import EditSubmission from "./screens/studentRole/EditSubmission";
 import NewSubmisson from "./screens/studentRole/NewSubmission";
-import ProfileStudent from "./screens/studentRole/ProfileStudent";
-import EditProfileStudent from "./screens/studentRole/EditProfileStudent";
 import CoordiratorHome from "./screens/coordiratorRole/CoordiratorHome";
 import ListSubmissionCoor from "./screens/coordiratorRole/ListSubmissionCoor";
 import DetailSubmissionCoor from "./screens/coordiratorRole/DetailSubmissionCoor";
@@ -88,8 +86,6 @@ function App() {
         <Route path="/listsubmission" element={checkStudentRole() ? <ListSubmission /> : <ForbiddenPage />} />
         <Route path="/editsubmission" element={checkStudentRole() ? <EditSubmission /> : <ForbiddenPage />} />
         <Route path="/newsubmission" element={checkStudentRole() ? <NewSubmisson /> : <ForbiddenPage />} />
-        <Route path="/profilestudent" element={checkStudentRole() ? <ProfileStudent /> : <ForbiddenPage />} />
-        <Route path="/editprofilestudent" element={checkStudentRole() ? <EditProfileStudent /> : <ForbiddenPage />} />
         <Route path="/studenthome" element={checkStudentRole() ? <StudentHome /> : <ForbiddenPage />} />
         {/* Coordinator */}
         <Route path="/coordiratorhome" element={checkCoorRole() ? <CoordiratorHome /> : <ForbiddenPage />} />
