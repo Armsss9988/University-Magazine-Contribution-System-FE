@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../css/styles.css";
 import HeaderStudent from '../../components/HeaderStudent';
 import Footer from '../../components/Footer';
+import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate và Link từ react-router-dom
 import { submissionAPI } from "../../api/api";
 import { useLocation } from 'react-router-dom';
 
@@ -9,6 +10,7 @@ function DetailSubmission() {
     const [submissions, setSubmissions] = useState([]);
     const [student, setStudent] = useState('');
     const [error, setError] = useState(null);
+    const navigate = useNavigate(); 
 
     const location = useLocation();
     const { id } = location.state;
@@ -31,6 +33,10 @@ function DetailSubmission() {
             setError(error.message);
         }
         
+    };
+
+    const handleEditClick = (id) => {
+        navigate(`/editsubmission/`, { state: { id } }); // Navigate to edit page with faculty id
     };
 
 
@@ -98,13 +104,7 @@ function DetailSubmission() {
                         </div>
                     </div>
                 </div>
-                <div style={{ width: '100%', textAlign: 'center' }}>
-                    <a href="/editsubmission">
-                        <button style={{ textAlign: 'center' }}>
-                            Edit
-                        </button>
-                    </a>
-                </div>
+                <button onClick={() => handleEditClick(submissions._id)}>Edit</button>
             </div>
 
             <div className="line"></div>

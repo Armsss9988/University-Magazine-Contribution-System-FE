@@ -33,6 +33,7 @@ import NewMagazine from "./screens/managerRole/NewMagazine";
 import DownloadFileZip from "./components/DownloadFileZip";
 import Dashboard from "./screens/managerRole/Dashboard";
 import { BarChart } from '@mui/x-charts/BarChart';
+import EditSemester from "./screens/admin/semesterManager/EditSemester";
 
 
 
@@ -104,6 +105,7 @@ function App() {
         <Route path="/listaccount" element={checkAdminRole() ? <ListAccount /> : <ForbiddenPage />} />
         <Route path="/semester" element={checkAdminRole() ? <SemesterList /> : <ForbiddenPage />} />
         <Route path="/createsemester" element={checkAdminRole() ? <CreateSemester /> : <ForbiddenPage />} />
+        <Route path="/editsemester" element={checkAdminRole() ? <EditSemester /> : <ForbiddenPage />} />
         <Route path="/createaccount" element={checkAdminRole() ? <CreateAccount /> : <ForbiddenPage />} />
         {/* Manager */}
         <Route path="/managerhome" element={checkManagerRole() ? <ManagerHome /> : <ForbiddenPage />} />

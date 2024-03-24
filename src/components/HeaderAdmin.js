@@ -6,43 +6,13 @@ import LogoutButton from "./Logout";
 
 function HeaderAdmin() {
 
-    //Student
-    const [isOpenStudent, setIsOpenStudent] = useState(false);
-    const [selectedValueStudent, setSelectedValueStudent] = useState('Student Account');
+    
 
-    const toggleDropdownStudent = () => {
-        setIsOpenStudent(!isOpenStudent);
-    };
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedValue, setSelectedValue] = useState('option1');
 
-    const handleSelectStudent = (value) => {
-        selectedValueStudent(value);
-        setIsOpenStudent(false);
-    };
-
-    //Manager
-    const [isOpenManager, setIsOpenManager] = useState(false);
-    const [selectedValueManager, setSelectedValueManager] = useState('Manager Account');
-
-    const toggleDropdownManager = () => {
-        setIsOpenManager(!isOpenManager);
-    };
-
-    const handleSelectManager = (value) => {
-        selectedValueManager(value);
-        setIsOpenManager(false);
-    };
-
-    //Coordinator
-    const [isOpenCoordinator, setIsOpenCoordinator] = useState(false);
-    const [selectedValueCoordinator, setSelectedValueCoordinator] = useState('Coordinator Account');
-
-    const toggleDropdownCoordinator = () => {
-        setIsOpenCoordinator(!isOpenCoordinator);
-    };
-
-    const handleSelectCoordinator = (value) => {
-        selectedValueCoordinator(value);
-        setIsOpenCoordinator(false);
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
     };
     const [isActive, setIsActive] = useState(false);
 
@@ -50,11 +20,7 @@ function HeaderAdmin() {
         setIsActive(true);
     };
 
-    // const logout = () => {
-    //     cookies.removeItem('token'); // Remove the token from local storage
-    //     // Optionally remove other user data
-    //     window.location.href = '/login'; // Redirect to the login page
-    //   };
+   
     return (
         <header>
             <div className="logoname">
@@ -75,7 +41,7 @@ function HeaderAdmin() {
                 <p>
                     <Link to="/listaccount">Account management</Link>
                 </p>
-
+                
 
 
             </div>

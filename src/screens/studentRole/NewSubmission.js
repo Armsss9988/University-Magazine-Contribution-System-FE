@@ -66,6 +66,7 @@ const NewSubmission = () => {
             console.log('Upload success:', response.data);
         } catch (error) {
             console.error('Upload failed:', error);
+            
         }
     };
 

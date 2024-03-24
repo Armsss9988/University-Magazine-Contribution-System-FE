@@ -1,56 +1,100 @@
-import React, { useState, useEffect } from "react";
-import Footer from "../../components/Footer";
-import HeaderStudent from "../../components/HeaderStudent";
+import React, { useState, useEffect } from 'react';
+import Dropzone from 'react-dropzone';
+import { useParams } from 'react-router-dom';
+import HeaderStudent from '../../components/HeaderStudent';
+import Footer from '../../components/Footer';
+import { submissionAPI } from '../../api/api';
 
-function EditSubmission() {
+const EditSubmission = () => {
+    const { id } = useParams();
+    const [files, setFiles] = useState([]);
+    const [title, setTitle] = useState('');
 
+    useEffect(() => {
+        // Fetch data của submission đã có từ API và hiển thị lên giao diện
+        const fetchData = async () => {
+            try {
+                const response = await submissionAPI.getSubmissionById(id);
+                const { data } = response;
+                setTitle(data.title);
+                setFiles(data.files);
+            } catch (error) {
+                console.error('Fetch submission error:', error);
+            }
+        };
+
+        fetchData();
+    }, [id]);
+
+    const onDrop = (acceptedFiles) => {
+        setFiles([...files, ...acceptedFiles]);
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (title.trim() === '') {
+            alert('Please enter a title.');
+            return;
+        }
+
+        if (files.length === 0) {
+            alert('Please select at least one file.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('title', title);
+        files.forEach((file) => {
+            formData.append(`File`, file);
+        });
+
+        try {
+            const response = await submissionAPI.updateSubmission(id, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            console.log('Update success:', response.data);
+        } catch (error) {
+            console.error('Update failed:', error);
+        }
+    };
+
+    const handleTitleChange = (event) => {
+        setTitle(event.target.value);
+    };
 
     return (
         <div className="container">
             <HeaderStudent/>
-
             <div className="line"></div>
-            <h1>List Submission</h1>
-            <div className="main-content" style={{padding:'80px', display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
-            
-                <div className="box-list-edit">
-
-                    <div style={{display:'flex', flexDirection:'column'}}>
-                    
-                    </div>
-
-                    <div style={{display:'flex', flexDirection:'column', textAlign:'center'}}>
-                    
-                    </div>
-                    
-                    <div style={{display:'flex', flexDirection:'column', textAlign:'center'}}>
-                    <a href="/detailsubmission">
-                    <button style={{marginRight:'20px'}}>Add new file</button>
-                    </a>
-                    <a href="/detailsubmission">
-                    <button style={{marginRight:'20px'}}>Delete all</button>
-                    </a>
-                    </div>
-                    
-                    
+            <h1>Edit Submission</h1>
+            <div className='main-content'>
+                <div className="form-container">
+                    <Dropzone onDrop={onDrop} className="dropzone">
+                        {({ getRootProps, getInputProps }) => (
+                            <div {...getRootProps()} className="dropzone-content">
+                                <input {...getInputProps()} />
+                                <p>Drag and drop Word files or images here</p>
+                                <p>(Or click to select file)</p>
+                            </div>
+                        )}
+                    </Dropzone>
+                    <ul className="file-list">
+                        {files.map((file, index) => (
+                            <li key={index}>{file.name}</li>
+                        ))}
+                    </ul>
+                    <form onSubmit={handleSubmit}>
+                        <input type="text" value={title} onChange={handleTitleChange} placeholder="Title" />
+                        <button type="submit">Submit</button>
+                    </form>
                 </div>
             </div>
-
-            <div style={{ width:'100%', textAlign:'center', margin:'10px'}}>
-            <a >
-                <button style={{ textAlign:'center'}}>
-                Save
-                </button>
-            </a>
-            </div>
-
-            <div className="line"></div>
             <Footer/>
         </div>
-
-
-
     );
-}
+};
 
-export default EditSubmission
+export default EditSubmission;

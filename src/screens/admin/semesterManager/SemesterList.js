@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useHistory
 import HeaderAdmin from '../../../components/HeaderAdmin';
 import Footer from '../../../components/Footer';
 import DeleteConfirmationDialog from '../../../components/DeleteConfirmationDialog';
@@ -11,6 +11,7 @@ const SemesterList = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+    const navigate = useNavigate(); // Initialize useHistory
 
     // ... your component logic
 
@@ -20,11 +21,11 @@ const SemesterList = () => {
         console.log('Item deleted!');
         fetchData();
         setIsDeleteDialogOpen(false); // Close the dialog after deletion
-      };
-    
-      const handleDeleteClick = () => {
+    };
+
+    const handleDeleteClick = () => {
         setIsDeleteDialogOpen(true);
-      };
+    };
 
     //   useEffect(() => {
     //     const fetchData = async () => {
@@ -48,14 +49,17 @@ const SemesterList = () => {
     useEffect(() => {
 
         fetchData();
-      }, []);
-    
-      const fetchData = async () => {
+    }, []);
+
+    const fetchData = async () => {
         const { data } = await semesterAPI.listSemester();
         setSemesters(data);
         console.log(semesters);
-      };
-      
+    };
+
+    const handleEditClick = (id) => {
+        navigate(`/editsemester/`, { state: { id } }); // Navigate to edit page with faculty id
+    };
 
     return (
         <div className='container'>
