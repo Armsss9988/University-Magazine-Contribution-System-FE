@@ -33,25 +33,14 @@ function DetailSubmission() {
         
     };
 
-    // const fetchDataStudent = async () => {
-    //     try {
-    //         const response = await submissionAPI.listSubmission(id, submissions);
-    //         const { data } = response;
 
-    //         setSubmissions(data);
-    //     } catch (error) {
-    //         setError(error.message);
-    //     }
-    // };
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
-
-    // if (error) {
-    //     return <div>Error: {error}</div>;
-    // }
-
-    // if (submissions.length === 0) {
-    //     return <div>Loading...</div>;
-    // }
+    if (submissions.length === 0) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="container">
