@@ -73,6 +73,42 @@ header {
 
 /* /////////////// */
 
+/* Header Admin */
+.menuStudent {
+  display: flex;
+}
+
+.menuStudent p {
+  margin-right: 20px;
+}
+
+.menuStudent p:last-child {
+  margin-right: 0;
+}
+
+.menuStudent a {
+  text-decoration: none;
+  color: #333; /* Màu chữ */
+  font-size: 20px;
+  transition: color 0.3s ease;
+  padding: 8px 12px; /* Padding để tạo khoảng trống xung quanh văn bản */
+}
+
+.menuStudent a:hover {
+  color: #555; /* Màu chữ khi hover */
+}
+
+.menuStudent a.active {
+  font-weight: bold;
+  color: #007bff; /* Màu chữ khi active */
+  background-color: #fff; /* Màu nền khi active */
+  border: 2px solid #007bff; /* Border khi active */
+  border-radius: 4px; /* Bo góc border */
+}
+
+
+/* /////////////// */
+
 .menu {
     flex-direction: row;
     display: flex;
