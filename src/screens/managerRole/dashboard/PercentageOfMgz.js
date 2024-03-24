@@ -9,14 +9,39 @@ import { Pie } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend);
 function PercentageOfMgz() {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
-  const [percentage, setPercentage] = useState([]); // Initialize with empty array
   const [options, setOptions] = useState([]);
   const [dataSet, setDataSet] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState("");
   const [faculties, setFaculties] = useState([]);
-  const [selected, setSelected] = useState({});
+  var chartData = {
+    labels: dataSet.map((item) => item.name),
+    datasets: [
+      {
+        label: "Percentage of Contributions",
+        data: dataSet.map((item) => item.percentage),
+        backgroundColor: COLORS,
+        borderColor: COLORS,
+        borderWidth: 1,
+      },
+    ],
+  };
   useEffect(() => {
+    const updateChart = () => {
+      const chartData = {
+        labels: dataSet.map((item) => item.name),
+        datasets: [
+          {
+            label: "Percentage of Contributions",
+            data: dataSet.map((item) => item.percentage),
+            backgroundColor: COLORS,
+            borderColor: COLORS,
+            borderWidth: 1,
+          },
+        ],
+      };
+      return chartData;
+    };
     const fetchData = async () => {
       try {
         const facultiesResponse = await facultyAPI.listFaculty();
@@ -28,7 +53,6 @@ function PercentageOfMgz() {
           }))
         );
         setFaculties(facultiesResponse.data);
-        handleDataChange(selected);
         // ... rest of the code
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -37,19 +61,16 @@ function PercentageOfMgz() {
         setIsLoading(false); // Clear loading state
       }
     };
-
     fetchData();
-    
-  }, [dataSet]);
-  const handleDataChange = async (selectedOption) => {
+    chartData = updateChart();
+  }, []);
+  const handleDataChange = async (selected) => {
     const data = [];
     setIsLoading(true);
     try {
-        if(selectedOption.value){
-            const percentageResponse = await dashboardAPI.percentage(selectedOption.value);
-      setPercentage(percentageResponse.data);
+      const res = await dashboardAPI.percentage(selected.value);
       faculties.forEach((faculty) => {
-        const emptyFaculty = percentage.filter(
+        const emptyFaculty = res.data.filter(
           (item) => item.faculty == faculty._id
         );
         if (emptyFaculty && emptyFaculty.length > 0) {
@@ -57,8 +78,8 @@ function PercentageOfMgz() {
           data.push(emptyFaculty[0]);
         }
       });
-        }    
       setDataSet(data);
+      console.log("Dataset:", dataSet);
     } catch (error) {
       console.error("Error fetching percentage or faculty data:", error);
       setError(error);
@@ -67,39 +88,19 @@ function PercentageOfMgz() {
     }
   };
 
-  const chartData = {
-    labels: dataSet.map((item) => item.name),
-    datasets: [
-      {
-        label: "Number of Contributions",
-        data: dataSet.map((item) => item.percentage),
-        backgroundColor: COLORS,
-        borderColor: COLORS,
-        borderWidth: 1,
-      },
-    ],
-  };
-  const callData = () => {
-    console.log(dataSet);
-  }
-
-
   return (
     <div className="container">
       <HeaderManger />
       <h1 style={{ fontSize: "50px" }}>Dashboard</h1>
       <h2>Majors</h2>
-      <button onClick={callData}>Data</button>
-      <Select options={options} onChange={e => setSelected(e)} />
+      <Select options={options} onChange={handleDataChange} />
       <div className="dashboard"></div>
       <div className="pie-chart">
-      {isLoading ? (
-        <h2>Loading...</h2> 
-      ) : (
-        <>
-          {dataSet.length > 0 && <Pie data={chartData} />} 
-        </>
-      )}
+        {isLoading ? (
+          <h2>Loading...</h2>
+        ) : (
+          <>{dataSet.length > 0 && <Pie data={chartData} />}</>
+        )}
       </div>
       <Footer />
     </div>

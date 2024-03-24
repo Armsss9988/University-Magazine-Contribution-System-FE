@@ -76,6 +76,7 @@ function NumberOfMgz() {
     });
     console.log("Data:", data);
     setDataSet(data);
+
     console.log("Dataset:", dataSet); 
   };
 
