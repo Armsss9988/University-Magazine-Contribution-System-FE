@@ -1,66 +1,108 @@
-import React from 'react';
-import '../../css/styles.css';
-import { BarChart } from '@mui/x-charts/BarChart';
-import Footer from '../../../components/Footer';
+import "../../css/styles.css";
+import React, { useState, useEffect } from "react";
+import Footer from "../../../components/Footer";
 import HeaderManger from "../../../components/HeaderManger";
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import Select from 'react-select';
-
+import Select from "react-select";
+import { dashboardAPI, semesterAPI, facultyAPI } from "../../../api/api";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Pie } from "react-chartjs-2";
+ChartJS.register(ArcElement, Tooltip, Legend);
 function PercentageOfMgz() {
-const data = [
-    { 
-        name: 'London',
-        value: 30 ,
-        
-    },
-    { 
-        name: 'Paris', 
-        value: 20 
-    },
-    { 
-        name: 'Hanoi',
-        value: 50     
-    },
-];
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
-    const options = [
-        { value: 'business', label: 'Business' },
-        { value: 'graphic design', label: 'Graphic design'},
-        { value: 'it', label: 'IT' },
-      ];
-    
-
-    return (
-
-        <div className='container'>
-        <HeaderManger/>
-        <h1 style={{ fontSize: "50px" }}>Dashboard</h1>
-        <h2>Majors</h2>
-         <Select options={options} />
-        <div className='dashboard'>
-            
-         </div>
-         <div className='pie-chart'>
-        <ResponsiveContainer width="100%" height={600}>
-            <PieChart>
-                <Pie
-                    data={data}
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={200}
-                    fill="#8884d8"
-                    dataKey="value"
-                    label={({ name }) => name}
-                >
-                    {data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                </Pie>
-            </PieChart>
-        </ResponsiveContainer>
-        </div>
-        <Footer/>
-        </div>
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
+  const [percentage, setPercentage] = useState([]); // Initialize with empty array
+  const [options, setOptions] = useState([]);
+  const [dataSet, setDataSet] = useState([]);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState("");
+  const [faculties, setFaculties] = useState([]);
+  const [selected, setSelected] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const facultiesResponse = await facultyAPI.listFaculty();
+        const semestersResponse = await semesterAPI.listSemester();
+        setOptions(
+          semestersResponse.data.map((semester) => ({
+            value: semester._id,
+            label: semester.academic_year,
+          }))
         );
+        setFaculties(facultiesResponse.data);
+        handleDataChange(selected);
+        // ... rest of the code
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setError(error); // Set error state
+      } finally {
+        setIsLoading(false); // Clear loading state
+      }
+    };
+
+    fetchData();
+    
+  }, [dataSet]);
+  const handleDataChange = async (selectedOption) => {
+    const data = [];
+    setIsLoading(true);
+    try {
+        if(selectedOption.value){
+            const percentageResponse = await dashboardAPI.percentage(selectedOption.value);
+      setPercentage(percentageResponse.data);
+      faculties.forEach((faculty) => {
+        const emptyFaculty = percentage.filter(
+          (item) => item.faculty == faculty._id
+        );
+        if (emptyFaculty && emptyFaculty.length > 0) {
+          emptyFaculty[0].name = faculty.name;
+          data.push(emptyFaculty[0]);
+        }
+      });
+        }    
+      setDataSet(data);
+    } catch (error) {
+      console.error("Error fetching percentage or faculty data:", error);
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const chartData = {
+    labels: dataSet.map((item) => item.name),
+    datasets: [
+      {
+        label: "Number of Contributions",
+        data: dataSet.map((item) => item.percentage),
+        backgroundColor: COLORS,
+        borderColor: COLORS,
+        borderWidth: 1,
+      },
+    ],
+  };
+  const callData = () => {
+    console.log(dataSet);
+  }
+
+
+  return (
+    <div className="container">
+      <HeaderManger />
+      <h1 style={{ fontSize: "50px" }}>Dashboard</h1>
+      <h2>Majors</h2>
+      <button onClick={callData}>Data</button>
+      <Select options={options} onChange={e => setSelected(e)} />
+      <div className="dashboard"></div>
+      <div className="pie-chart">
+      {isLoading ? (
+        <h2>Loading...</h2> 
+      ) : (
+        <>
+          {dataSet.length > 0 && <Pie data={chartData} />} 
+        </>
+      )}
+      </div>
+      <Footer />
+    </div>
+  );
 }
 export default PercentageOfMgz;

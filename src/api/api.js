@@ -93,8 +93,8 @@ const dashboardAPI = {
   contributions: () => {
     return axiosClient.get("/dashboard/submissions");
   },
-  percentage: () => {
-    return axiosClient.get("/dashboard/percentage");
+  percentage: (id) => {
+    return axiosClient.get(`/dashboard/percentage/${id}`);
   },
 
   
