@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../screens/css/styles.css";
 import { Link, useLocation } from "react-router-dom";
 import LogoutButton from "./Logout";
@@ -8,27 +8,12 @@ function HeaderAdmin() {
     const location = useLocation();
 
     // Xác định item được chọn dựa trên đường dẫn hiện tại
-    const getCurrentItem = () => {
-        const pathname = location.pathname;
-        switch (pathname) {
-            case '/adminhome':
-                return 'Home';
-            case '/viewfaculty':
-                return 'Faculty Manager';
-            case '/semester':
-                return 'Semester Manager';
-            case '/listaccount':
-                return 'Account Management';
-            default:
-                return '';
-        }
-    };
+    useEffect(() => {
+        setActiveItem(window.location.pathname);
+    }, []);
 
     // Thiết lập active item khi component được render
-    useState(() => {
-        const currentItem = getCurrentItem();
-        setActiveItem(currentItem);
-    }, [location.pathname]); // Khi đường dẫn thay đổi, cập nhật lại active item
+    
 
     return (
         <div className="sidebar">
@@ -37,16 +22,16 @@ function HeaderAdmin() {
             </div>
 
             <div className="menuAdmin">
-                <p className={activeItem === 'Home' ? 'active' : ''}>
+                <p className={activeItem === '/adminhome' ? 'active' : ''}>
                     <Link to="/adminhome">Home</Link>
                 </p>
-                <p className={activeItem === 'Faculty Manager' ? 'active' : ''}>
-                    <Link to="/viewfaculty">Faculty Manager</Link>
+                <p className={activeItem === '/viewfaculty' ? 'active' : ''}>
+                    <Link to="/viewfaculty">Faculty Management</Link>
                 </p>
-                <p className={activeItem === 'Semester Manager' ? 'active' : ''}>
-                    <Link to="/semester">Semester Manager</Link>
+                <p className={activeItem === '/semester' ? 'active' : ''}>
+                    <Link to="/semester">Semester Management</Link>
                 </p>
-                <p className={activeItem === 'Account Management' ? 'active' : ''}>
+                <p className={activeItem === '/listaccount' ? 'active' : ''}>
                     <Link to="/listaccount">Account Management</Link>
                 </p>
             </div>
