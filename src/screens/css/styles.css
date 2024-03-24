@@ -28,7 +28,35 @@ header {
     text-align: center;
     justify-content: center;
     align-items: center;
+    font-size: 24px;
 }
+
+/* Header Admin */
+.menuAdmin {
+  display: flex;
+}
+
+.menuAdmin p {
+  margin-right: 20px;
+}
+
+.menuAdmin p:last-child {
+  margin-right: 0;
+}
+
+.menuAdmin a {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.menuAdmin a:hover {
+  color: lightgray;
+}
+
+
+/* /////////////// */
 
 .menu {
     flex-direction: row;

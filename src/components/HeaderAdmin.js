@@ -6,19 +6,7 @@ import LogoutButton from "./Logout";
 
 function HeaderAdmin() {
 
-    
-
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState('option1');
-
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen);
-    };
-    const [isActive, setIsActive] = useState(false);
-
-    const handleClick = () => {
-        setIsActive(true);
-    };
+   
 
    
     return (
@@ -28,14 +16,14 @@ function HeaderAdmin() {
 
             </div>
 
-            <div className="menu">
+            <div className="menuAdmin">
                 <p>
                     <Link to="/adminhome">Home</Link>
                 </p>
                 <p>
                     <Link to="/viewfaculty">Faculty Manager</Link>
                 </p>
-                <p onClick={handleClick} className={isActive ? 'active' : ''}>
+                <p >
                     <Link to="/semester">Semester Manager</Link>
                 </p>
                 <p>
