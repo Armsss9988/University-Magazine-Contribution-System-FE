@@ -109,47 +109,86 @@ header {
 
 /* /////////////// */
 
-.menu {
-    flex-direction: row;
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    justify-content: space-between;
+
+/* Header Guess */
+.menuGuess {
+  display: flex;
+  align-items: center;
 }
 
-.loginres {
-    flex-direction: row;
-    display: flex;
+.menuGuess a {
+  text-decoration: none;
+  color: #333; /* Màu chữ */
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.menuGuess a:hover {
+  color: #007bff; /* Màu chữ khi hover */
+}
+
+.menuGuess a.active {
+  font-weight: bold;
+  color: #007bff; /* Màu chữ khi active */
+  background-color: #fff; /* Màu nền khi active */
+  border: 2px solid #007bff; /* Border khi active */
+  padding: 10px;
+  border-radius: 4px; /* Bo góc border */
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown button {
+  background-color: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 8px 20px;
+  color: #333; /* Màu chữ */
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f0f0f0; /* Màu nền khi hover */
 }
 
 .btnLogin {
-    width: 80px;
-    height: 40px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    border-radius: 10px;
-    color: #FCF6E6;
-    background-color: #315D7D;
+  background-color: transparent;
+  border: 1px solid #007bff;
+  color: #007bff;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .btnLogin:hover {
-    background-color: #FCF6E6;
-    cursor: pointer;
-    color: black;
+  background-color: #007bff; /* Màu nền khi hover */
+  color: #fff; /* Màu chữ khi hover */
 }
 
-.btnRegister {
-    width: 80px;
-    height: 40px;
-    justify-content: center;
-    align-items: center;
-    color: #FCF6E6;
-    display: flex;
-    margin-left: 20px;
-    border-radius: 10px;
-    background-color: #315D7D;
-}
+
+/* /////////////// */
 
 .blogimg {
     width: 100%;
