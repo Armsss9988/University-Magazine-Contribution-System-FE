@@ -19,7 +19,7 @@ const facultyAPI = {
   listFaculty: () => {
     return axiosClient.get("/faculty");
   },
-  
+
   deleteFaculty: (id) => {
     return axiosClient.delete(`/faculty/${id}`);
   },
@@ -29,20 +29,18 @@ const facultyAPI = {
   },
 };
 
-
 const semesterAPI = {
   createSemester: (semesterData) => {
     return axiosClient.post("/semester", semesterData);
   },
 
   listSemester: () => {
-    return axiosClient.get("/semester", );
+    return axiosClient.get("/semester");
   },
-  
+
   deleteSemester: (id) => {
     return axiosClient.delete(`/semester/${id}`);
   },
-  
 };
 
 const submissionAPI = {
@@ -56,12 +54,9 @@ const submissionAPI = {
   getSubmissionById: (id) => {
     return axiosClient.get(`/submission/${id}`);
   },
-
 };
 
 const userAPI = {
-  
-
   loginUser: (loginData) => {
     return axiosClient.post("/user/login", loginData);
   },
@@ -74,6 +69,9 @@ const userAPI = {
     return axiosClient.get("/user/profile");
   },
 
+  getUser: (id) => {
+    return axiosClient.get(`/user/detail/${id}`);
+  },
   createUser: (createData) => {
     return axiosClient.post("/user/signup", createData);
   },
@@ -86,7 +84,6 @@ const userAPI = {
   deleteUser: (id) => {
     return axiosClient.delete(`/user/delete/${id}`);
   },
-
 };
 const dashboardAPI = {
   contributors: (submissionData) => {
@@ -99,8 +96,6 @@ const dashboardAPI = {
   percentage: (id) => {
     return axiosClient.get(`/dashboard/percentage/${id}`);
   },
-
-  
 };
 
-export { userAPI, semesterAPI, submissionAPI, facultyAPI,dashboardAPI };
+export { userAPI, semesterAPI, submissionAPI, facultyAPI, dashboardAPI };

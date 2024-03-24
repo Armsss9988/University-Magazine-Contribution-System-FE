@@ -47,7 +47,7 @@ function App() {
     const fetchUserRoles = async () => {
       try {
         const response = await userAPI.profileUser({});
-        const roles = response.data.user.role;
+        const roles = response.data.role;
         setUserRoles(roles);
         console.log(roles);
       } catch (error) {

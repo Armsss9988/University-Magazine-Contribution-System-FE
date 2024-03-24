@@ -35,8 +35,8 @@ function ListSubmission() {
                 {submissions.map(submission => (
                     <div className="box-list" key={submission.id}>
                         <div className="files-column">
-                            <h3>Files</h3>
-                            <p>{submission.document_path}</p>
+                            <h3>Title</h3>
+                            <p>{submission.title}</p>
                         </div>
                         <div className="status-column">
                             <h3>Status</h3>

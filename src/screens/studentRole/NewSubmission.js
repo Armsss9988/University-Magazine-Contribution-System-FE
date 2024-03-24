@@ -28,6 +28,7 @@ const NewSubmission = () => {
     const [title, setTitle] = useState('');
     const [agree, setAgree] = useState(false);
     const [showTerms, setShowTerms] = useState(false);
+    const [isLoading, setIsLoading] = useState("");
 
     const onDrop = (acceptedFiles) => {
         setFiles([...files, ...acceptedFiles]);
@@ -35,6 +36,7 @@ const NewSubmission = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsLoading(true);
 
         if (title.trim() === '') {
             alert('Please enter a title.');
@@ -58,14 +60,20 @@ const NewSubmission = () => {
         });
 
         try {
+            
             const response = await submissionAPI.createSubmission(formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+            window.alert(response.data.message);
             console.log('Upload success:', response.data);
+            window.location.href = '/studenthome'
         } catch (error) {
-            console.error('Upload failed:', error);
+            window.alert("Error creating subbmission");
+        }
+        finally{
+            setIsLoading(false);
         }
     };
 
@@ -106,14 +114,19 @@ const NewSubmission = () => {
                             <li key='File'>{file.name}</li>
                         ))}
                     </ul>
-                    <form onSubmit={handleSubmit}>
-                        <input type="text" value={title} onChange={handleTitleChange} placeholder="Title" />
-                        <label className='checkbox-container'>
-                            <input className='checkbox' type="checkbox" checked={agree} onChange={handleAgreeChange} />
-                            <span className="checkbox-label">I agree to the <text className='text-terms' onClick={handleShowTerms}>Terms of Service</text></span>
-                        </label>
-                        <button type="submit">Submit</button>
-                    </form>
+                    {isLoading ? (
+          <h2>Loading...</h2>
+        ) : (
+            <form onSubmit={handleSubmit}>
+            <input type="text" value={title} onChange={handleTitleChange} placeholder="Title" />
+            <label className='checkbox-container'>
+                <input className='checkbox' type="checkbox" checked={agree} onChange={handleAgreeChange} />
+                <span className="checkbox-label">I agree to the <text className='text-terms' onClick={handleShowTerms}>Terms of Service</text></span>
+            </label>
+            <button type="submit">Submit</button>
+        </form>
+        )}
+                   
                 </div>
             </div>
             {showTerms && <TermsAndConditions onClose={handleCloseTerms} />}

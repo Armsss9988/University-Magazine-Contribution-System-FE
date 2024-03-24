@@ -58,8 +58,8 @@ function LoginScreen() {
             });
             //setUsers(response.data.user);
             //setRoles(response.data.user['role'])
-            const users = response.data.user;
-            const roles = response.data.user['role'];
+            const users = response.data;
+            const roles = response.data.role;
 
 
 
