@@ -32,27 +32,42 @@ header {
 }
 
 /* Header Admin */
-.menuAdmin {
+/* styles.css */
+/* styles.css */
+.sidebar {
+  width: 250px; /* Độ rộng của sidebar */
+  height: 100%; /* Chiều cao của sidebar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  color: white;
+  padding: 20px;
   display: flex;
+  flex-direction: column;
 }
 
 .menuAdmin p {
-  margin-right: 20px;
-}
-
-.menuAdmin p:last-child {
-  margin-right: 0;
+  margin-bottom: 10px; /* Khoảng cách giữa các mục trong menu */
 }
 
 .menuAdmin a {
   text-decoration: none;
-  color: black;
+  color: white;
   font-size: 16px;
   transition: color 0.3s ease;
 }
 
 .menuAdmin a:hover {
   color: lightgray;
+}
+
+.menuAdmin p.active a {
+  font-weight: bold;
+    color: lightblue; /* Màu sắc của mục active */
+    border-left: 4px solid lightblue; /* Border màu lightblue ở bên trái */
+    padding-left: 6px; /* Padding bổ sung để tạo khoảng cách giữa văn bản và border */
+  color: lightblue; /* Màu sắc của mục active */
 }
 
 
@@ -207,38 +222,7 @@ input {
 
 
 
-/* Avatar */
-.dropdown-content-ava {
-    display: none;
-    /* Initially hide the dropdown content */
-    position: absolute;
-    /* Position the content absolutely relative to the dropdown button */
-    background-color: #f1f1f1;
-    min-width: 50px;
-    padding: 0;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    /* Ensure content is displayed above other elements */
-    display: flex;
-    flex-direction: column;
 
-}
-
-.drlist-item-ava {
-    padding: 10px;
-    text-decoration: none;
-}
-
-.drlist-item-ava:hover {
-    background-color: #FCF6E6;
-    cursor: pointer;
-    color: black;
-}
-
-.active {
-    background-color: #000;
-    color: #fff;
-  }
 
   /* Profile Student */
   .profile-container {
@@ -364,10 +348,7 @@ input {
     text-align: center; /* Căn giữa text header */
   }
 
-  /* active */
-  .active{
-    background-color: red;
-  }
+ 
 
 
 
