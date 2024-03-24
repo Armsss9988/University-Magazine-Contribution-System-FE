@@ -30,7 +30,6 @@ const EditFaculty = () => {
 
   const handleSubmit = async (event)  => {
     event.preventDefault();
-    console.log("Submited");
     try {
       const response = await facultyAPI.editFaculty(id, faculty);
       window.alert(response.data.message);
