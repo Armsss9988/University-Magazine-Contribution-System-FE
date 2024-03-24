@@ -53,7 +53,10 @@ const submissionAPI = {
   listSubmission: () => {
     return axiosClient.get("submission/list/data");
   },
-  
+  getSubmissionById: (id) => {
+    return axiosClient.get(`/submission/${id}`);
+  },
+
 };
 
 const userAPI = {

@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../../components/Footer";
-import HeaderStudent from "../../components/HeaderStudent";
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate và Link từ react-router-dom
 import { submissionAPI } from "../../api/api";
+import HeaderStudent from '../../components/HeaderStudent'; // Import HeaderStudent từ đường dẫn chính xác
+import Footer from '../../components/Footer'; // Import Footer từ đường dẫn chính xác
 
 function ListSubmission() {
     const [submissions, setSubmissions] = useState([]);
+    const navigate = useNavigate(); 
 
     useEffect(() => {
-        // Fetch danh sách các submission từ API khi component được render
         const fetchSubmissions = async () => {
             try {
-                const response = await submissionAPI.listSubmission(); // Fetch danh sách submissions từ API
-                setSubmissions(response.data); // Set danh sách submissions vào state
-                console.log(submissions);
+                const response = await submissionAPI.listSubmission();
+                setSubmissions(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error('Failed to fetch submissions:', error);
             }
@@ -22,16 +22,13 @@ function ListSubmission() {
         fetchSubmissions();
     }, []);
 
-
-    
-    
-    
-
-
+    const handleDetailClick = (id) => {
+        navigate(`/detailsubmission/`,{ state: {id} }); // Navigate to edit page with faculty id
+      };
 
     return (
         <div className="container">
-            <HeaderStudent />
+            <HeaderStudent /> {/* Sử dụng HeaderStudent */}
             <div className="line"></div>
             <h1>List Submission</h1>
             <div className='main-content' style={{ padding: '20px' }}>
@@ -39,18 +36,13 @@ function ListSubmission() {
                     <div className="box-list" key={submission.id}>
                         <div className="files-column">
                             <h3>Files</h3>
-                            {/* <p>{submission._id}</p>
-                            <p>{submission.student}</p> */}
-                            <p>{(submission.document_path)}</p>
+                            <p>{submission.document_path}</p>
                         </div>
                         <div className="status-column">
                             <h3>Status</h3>
                             <p>{submission.status}</p>
                         </div>
-                        {/* Thay thế thẻ <a> bằng Link */}
-                        <Link to={`/detailsubmission/${submission.id}`} className="detail-link">
-                            <button>Detail</button>
-                        </Link>
+                        <button onClick={() => handleDetailClick(submission._id)}>Detail</button>
                     </div>
                 ))}
             </div>
@@ -60,7 +52,7 @@ function ListSubmission() {
                 </Link>
             </div>
             <div className="line"></div>
-            <Footer />
+            <Footer /> {/* Sử dụng Footer */}
         </div>
     );
 }
