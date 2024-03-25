@@ -6,14 +6,6 @@ import { facultyAPI } from '../../../api/api';
 const CreateFaculty = () => {
   const [facultyName, setFacultyName] = useState('');
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFacultyDetails((prevDetails) => ({
-  //     ...prevDetails,
-  //     [name]: value,
-  //   }));
-  // };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -36,12 +28,11 @@ const CreateFaculty = () => {
   return (
     <div className="container">
       <SidebarAdmin />
-      <div style={{ flex: '1 1 auto', display: 'flex', justifyContent: 'center' }}>
-        <div style={{ width: '500px', display: 'flex', flexDirection: 'column', padding: '20px' }}>
-          <h2 style={{ textAlign: 'center' }}>Create Faculty</h2>
+      <div className="content-newacc">
+        <div className="form-container">
+          <h1>New Faculty</h1>
           <form onSubmit={handleSubmit}>
-
-            <div FacultyName="form-group">
+            <div className="form-group">
               <label htmlFor="facultyName">Faculty Name:</label>
               <input
                 type="text"
@@ -53,18 +44,14 @@ const CreateFaculty = () => {
                 required
               />
             </div>
-            <div style={{ justifyContent: 'center', display: 'flex' }}>
-              <button type="submit" FacultyName="btn btn-primary" >Create Faculty</button>
+            <div className="button-container">
+              <button type="submit" className="btn btn-primary">Create Faculty</button>
             </div>
-
           </form>
         </div>
-
       </div>
-
       <Footer />
     </div>
-
   );
 };
 
