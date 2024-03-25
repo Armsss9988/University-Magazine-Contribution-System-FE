@@ -60,7 +60,7 @@ const ListAccount = () => {
       <HeaderAdmin />
 
       <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <h1>List Accounts</h1>
+        <h1>Accounts List</h1>
         {error && <p>Error: {error.message}</p>}
         {accounts.length > 0 && (
           <table className="table">

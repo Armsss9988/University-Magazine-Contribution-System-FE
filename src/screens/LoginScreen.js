@@ -105,11 +105,7 @@ function LoginScreen() {
     return (
         <div className="container">
             <HeaderGuess />
-            <div>
-                <div>
-
-                </div>
-            </div>
+            
 
             <div className="logincontainer" style={{ flex: '1 1 auto' }}>
                 <div className="loginframe">

@@ -46,7 +46,7 @@ function ListSubmission() {
                     </div>
                 ))}
             </div>
-            <div className="centered-button">
+            <div className="centered-button" style={{ width: '100%', textAlign: 'center', margin: '10px' }}>
                 <Link to="/newsubmission">
                     <button>New Submission</button>
                 </Link>

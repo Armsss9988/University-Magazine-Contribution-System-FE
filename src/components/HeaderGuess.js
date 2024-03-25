@@ -36,15 +36,16 @@ function HeaderGuess() {
                     </button>
                     {isOpen && (
                         <ul className="dropdown-content">
-                            <a className="drlist-item" href="/magazinecomp">
-                                Magazine of COMP
-                            </a>
-                            <a className="drlist-item" href="/magazinebus">
-                                Magazine of BUS
-                            </a>
-                            <a className="drlist-item" href="/magazinegd">
-                                Magazine of GD
-                            </a>
+                            <p className="drlist-item" >
+                                <Link to="/magazinecomp">Magazine of COMP</Link>
+                            </p>
+                            <p className="drlist-item" >
+                                <Link to="/magazinebus">Magazine of BUS</Link>
+                            </p>
+                            <p className="drlist-item" >
+                                <Link to="/magazinegd">Magazine of GD</Link>
+                            </p>
+                            
                         </ul>
                     )}
                 </div>
@@ -53,9 +54,9 @@ function HeaderGuess() {
             </div>
 
             <div className="loginres">
-                <a href="/login">
+                <Link to="/login">
                     <button className="btnLogin">Login</button>
-                </a>
+                </Link>
             </div>
         </header>
     );

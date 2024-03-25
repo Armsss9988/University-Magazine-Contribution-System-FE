@@ -43,7 +43,7 @@ const ViewFaculty = () => {
     <div className="container">
       <HeaderAdmin />
       <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <h2>View Faculty</h2>
+        <h2>Faculty list</h2>
         <table className="table">
           <thead>
             <tr>
@@ -58,7 +58,7 @@ const ViewFaculty = () => {
                 <td>{faculty._id}</td>
                 <td>{faculty.name}</td>
                 <td>
-                  <div style={{ width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'yellow' }}>
+                  <div style={{ width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                     <button style={{ textAlign: 'center' }} onClick={() => handleEditClick(faculty._id)}>
                       Edit
                     </button>
