@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import LoginScreen from "./screens/LoginScreen";
-import { BrowserRouter, Routes, Route, } from 'react-router-dom';
+import { BrowserRouter, Routes, Route,Navigate } from 'react-router-dom';
 import MagazineComp from "./screens/guessRole/MagazineComp";
 import MagazineBus from "./screens/guessRole/MagazineBus";
 import ContactUS from "./screens/guessRole/ContactUS";
@@ -40,7 +40,10 @@ import EditSemester from "./screens/admin/semesterManager/EditSemester";
 function App() {
 
 
+  
   const [userRoles, setUserRoles] = useState([]);
+  const [loading, setLoading] = useState(true); // State to track loading
+
 
   useEffect(() => {
     const fetchUserRoles = async () => {
@@ -48,8 +51,11 @@ function App() {
         const response = await userAPI.profileUser({});
         const roles = response.data.user.role;
         setUserRoles(roles);
-        console.log(roles);
+        setLoading(false); // Set loading to false when roles are fetched
+
+        console.log("Role: "+roles);
       } catch (error) {
+        setLoading(false);
         console.error("API Error:", error);
         // Handle error
       }
@@ -58,6 +64,9 @@ function App() {
     fetchUserRoles();
   }, []);
 
+  
+  
+  
 
   const checkAdminRole = () => {
     // Logic to check user role, return true for admin, false otherwise
@@ -78,6 +87,11 @@ function App() {
     return userRoles.includes('manager'); // For demonstration purpose, always return true
   };
 
+  // Return loading screen if roles are still being fetched
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -87,6 +101,7 @@ function App() {
         <Route path="/magazinebus" element={<MagazineBus />} />
         <Route path="/magazinegd" element={<MagazineGd />} />
         <Route path="/contact" element={<ContactUS />} />
+        <Route path="/forbidden" element={<ForbiddenPage />} />
         {/* Student role */}
         <Route path="/detailsubmission" element={checkStudentRole() ? <DetailSubmission /> : <ForbiddenPage />} />
         <Route path="/listsubmission" element={checkStudentRole() ? <ListSubmission /> : <ForbiddenPage />} />

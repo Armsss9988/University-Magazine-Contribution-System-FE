@@ -109,7 +109,7 @@ function LoginScreen() {
 
             <div className="logincontainer" style={{ flex: '1 1 auto' }}>
                 <div className="loginframe">
-                    <h1>Login</h1>
+                    <h1 className="titlelogin">Login</h1>
 
 
                     <form className="loginform" onSubmit={handleSubmit}>
