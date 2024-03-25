@@ -13,6 +13,8 @@
 footer {
   background-color: #e7f4fd;
   padding: 20px;
+  border-top: 2px solid black;
+
 }
 
 header {
@@ -229,88 +231,26 @@ header {
 
 
 
-/* Login */
+/* Logout */
 
-.logincontainer {
-  display: flex;
-  align-items: center;
-  height: 100vh;
-  /* Thay đổi chiều cao thành 100% của viewport */
-  justify-content: center;
-  background-color: #f0f0f0;
-  /* Một màu nền nhẹ nhàng */
-}
-
-.loginframe {
-  background-color: #ffffff;
-  /* Nền trắng */
-  padding: 50px;
-  width: 300px;
-  border-radius: 10px;
-  /* Giảm độ cong của góc thành 10px */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /* Thêm bóng nhẹ */
-}
-
-.loginform {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* Canh giữa các thành phần trong form */
-}
-
-.loginform label {
-  width: 100%;
-  max-width: 300px;
-  margin-bottom: 5px;
-}
-
-.titlelogin{
-  text-align: center;
-}
-
-
-.loginform input {
-  width: 100%;
-  /* Đảm bảo rằng input sẽ điền vào toàn bộ chiều rộng của cha */
-  max-width: 300px;
-  /* Tối đa là 300px */
-  height: 20px;
-  /* Tăng chiều cao của input */
-  padding: 10px;
-  /* Tăng khoảng cách bên trong input */
-  margin-bottom: 0px;
-  /* Khoảng cách giữa các input */
-  border: 1px solid #ddd;
-  /* Viền nhẹ */
-  border-radius: 5px;
-  /* Độ cong nhẹ */
-}
-
-.loginbtn {
-  width: 100%;
-  max-width: 300px;
-  height: 40px;
-  margin-top: 50px;
-  background-color: #315D7D;
+.logout {
+  background-color: transparent;
+  border: 1px solid #007bff;
+  color: #007bff;
+  padding: 8px 16px;
   font-size: 16px;
-  color: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  /* Hiệu ứng chuyển đổi màu nền */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.loginbtn:hover {
-  background-color: #254361;
-  /* Màu nền tối hơn khi hover */
+.logout:hover {
+  background-color: #007bff;
+  /* Màu nền khi hover */
+  color: #fff;
+  /* Màu chữ khi hover */
 }
-
 
 /* /////////////////////////////////////////////////////////////////////////////////////// */
-
-
 
 .homebtn {
   background-color: #315D7D;

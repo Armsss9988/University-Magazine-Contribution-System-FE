@@ -10,7 +10,6 @@ function StudentHome() {
         <div className="container">
             <HeaderStudent/>
 
-            <div className="line"></div>
 
             {/* <div className='main-content' style={{padding:'20px'}}>
                 <div className="box-list-course">
@@ -30,7 +29,6 @@ function StudentHome() {
 
             </div>
 
-            <div className="line"></div>
             
             <Footer/>
         </div>
