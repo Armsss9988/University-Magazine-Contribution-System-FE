@@ -74,6 +74,7 @@ const NewSubmission = () => {
         }
         finally{
             setIsLoading(false);
+            
         }
     };
 

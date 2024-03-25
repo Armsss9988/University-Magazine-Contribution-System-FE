@@ -74,7 +74,7 @@ const CreateAccount = () => {
     return (
         <div className='container'>
             <HeaderAdmin />
-            <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column'}}>
+            <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <h2>Create Account</h2>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                 <Form onSubmit={handleSubmit}>

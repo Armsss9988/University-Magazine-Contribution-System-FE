@@ -3,37 +3,52 @@ import axios from 'axios'; // Import Axios for HTTP requests
 import HeaderAdmin from '../../../components/HeaderAdmin';
 import Footer from '../../../components/Footer';
 import DeleteConfirmationDialog from '../../../components/DeleteConfirmationDialog';
-import { userAPI } from "../../../api/api";
-
-
+import { facultyAPI, userAPI } from "../../../api/api";
 
 const ListAccount = () => {
-  const [accounts, setAccounts] = useState([
-
-  ]);
-
-  useEffect(() => {
-
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const { data } = await userAPI.allUser();
-    setAccounts(data.users);
-    console.log(accounts);
-  };
+  const [accounts, setAccounts] = useState([]);
+  const [faculties, setFaculties] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
-  // ... your component logic
+  useEffect(() => {
+    fetchData();
+    fetchDataFa();
+    
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const { data } = await userAPI.allUser();
+      setAccounts(data.users);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      setError(error);
+    }
+  };
+
+  const fetchDataFa = async () => {
+    try {
+      const { data } = await facultyAPI.listFaculty();
+      setFaculties(data);
+      console.log(data.name);
+    } catch (error) {
+      console.error('Error fetching faculty data:', error);
+      setError(error);
+    }
+  };
+
+  const getFacultyNameById = (facultyId) => {
+    const faculty = faculties.find(f => f._id === facultyId);
+    return faculty ? faculty.name : 'Unknown';
+  };
 
   const handleDelete = async (id) => {
     await userAPI.deleteUser(id);
-    // Perform your actual deletion logic here
     console.log('Item deleted!');
     fetchData();
-    setIsDeleteDialogOpen(false); // Close the dialog after deletion
+    setIsDeleteDialogOpen(false);
   };
 
   const handleDeleteClick = () => {
@@ -44,73 +59,58 @@ const ListAccount = () => {
     <div className="container">
       <HeaderAdmin />
 
-      <div style={{ flex: '1 1 auto' }}>
+      <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h1>List Accounts</h1>
         {error && <p>Error: {error.message}</p>}
         {accounts.length > 0 && (
           <table className="table">
-
             <thead>
               <tr>
-
                 <th>Email</th>
                 <th>Role</th>
+                <th>Faculty</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-
               {accounts.map((account) => (
-
-                <tr>
+                
+                <tr key={account._id}>
                   <td>{account.email}</td>
                   <td>{account.role}</td>
-
+                  <td>{getFacultyNameById(account.faculty)}</td>
                   <td>
-                    <div style={{
-                      width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row',
-                      alignItems: 'center', justifyContent: 'center'
-                    }}>
+                    <div style={{ width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                       <a href="/editfaculty">
-                        <button style={{ textAlign: 'center' }}>
-                          Edit
-                        </button>
+                        <button>Edit</button>
                       </a>
                       <div>
-                        {/* Your component content */}
                         <button onClick={handleDeleteClick}>Delete</button>
                         <DeleteConfirmationDialog
                           isOpen={isDeleteDialogOpen}
                           onClose={() => setIsDeleteDialogOpen(false)}
                           onDelete={() => handleDelete(account._id)}
-                          title="Delete Confirmation" // Optional: Customize title
-                          message="This action cannot be undone. Are you sure you want to delete?" // Optional: Customize message
+                          title="Delete Confirmation"
+                          message="This action cannot be undone. Are you sure you want to delete?"
                         />
                       </div>
                     </div>
                   </td>
-
                 </tr>
               ))}
             </tbody>
           </table>
-
         )}
-
-
       </div>
+
       <div style={{ width: '100%', textAlign: 'center', margin: '10px' }}>
         <a href="/createaccount">
-          <button style={{ textAlign: 'center' }}>
-            New Account
-          </button>
+          <button>New Account</button>
         </a>
       </div>
 
-
       <Footer />
     </div>
-
   );
 };
 

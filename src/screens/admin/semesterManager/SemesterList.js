@@ -1,61 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useHistory
 import HeaderAdmin from '../../../components/HeaderAdmin';
 import Footer from '../../../components/Footer';
 import DeleteConfirmationDialog from '../../../components/DeleteConfirmationDialog';
 import { semesterAPI } from '../../../api/api';
 
 const SemesterList = () => {
-    const [semesters, setSemesters] = useState([
-    ]);
+    const [semesters, setSemesters] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+    const navigate = useNavigate(); // Initialize useHistory
 
-    // ... your component logic
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const { data } = await semesterAPI.listSemester();
+            setSemesters(data);
+        } catch (error) {
+            console.error('Error fetching semester data:', error);
+            setError(error);
+        }
+    };
 
     const handleDelete = async (id) => {
         await semesterAPI.deleteSemester(id);
-        // Perform your actual deletion logic here
         console.log('Item deleted!');
         fetchData();
-        setIsDeleteDialogOpen(false); // Close the dialog after deletion
-      };
-    
-      const handleDeleteClick = () => {
+        setIsDeleteDialogOpen(false);
+    };
+
+    const handleDeleteClick = () => {
         setIsDeleteDialogOpen(true);
-      };
+    };
 
-    //   useEffect(() => {
-    //     const fetchData = async () => {
-    //       setIsLoading(true);
-    //       setError(null); // Clear any previous errors
-
-    //       try {
-    //         const response = await axios.get('/api/semesters'); // Replace with your API endpoint
-    //         setSemesters(response.data);
-    //       } catch (error) {
-    //         console.error('Error fetching semesters:', error);
-    //         setError(error); // Store error for display
-    //       } finally {
-    //         setIsLoading(false);
-    //       }
-    //     };
-
-    //     fetchData();
-    //   }, []);
-
-    useEffect(() => {
-
-        fetchData();
-      }, []);
-    
-      const fetchData = async () => {
-        const { data } = await semesterAPI.listSemester();
-        setSemesters(data);
-        console.log(semesters);
-      };
-      
+    const formatDateTime = (dateTimeString) => {
+        const dateTime = new Date(dateTimeString);
+        return dateTime.toLocaleString(); // Format the date and time as desired
+    };
 
     return (
         <div className='container'>
@@ -69,8 +54,8 @@ const SemesterList = () => {
 
                         <thead>
                             <tr>
-                                <th>Start day</th>
-                                <th>End day</th>
+                                <th>Start date and time</th>
+                                <th>End date and time</th>
                                 <th>Status</th>
                                 <th>Name</th>
                                 <th>Action</th>
@@ -80,9 +65,9 @@ const SemesterList = () => {
 
                             {semesters.map((semester) => (
                                 <tr key={semester._id}>
-                                    <td>{semester.start_date}</td>
-                                    <td>{semester.final_closure_date}</td>
-                                    <td>{semester.closed}</td>
+                                    <td>{formatDateTime(semester.start_date)}</td>
+                                    <td>{formatDateTime(semester.final_closure_date)}</td>
+                                    <td>{semester.closed ? 'Closed' : 'Opening'}</td>
                                     <td>{semester.academic_year}</td>
                                     <td>
                                         <div style={{
@@ -95,14 +80,13 @@ const SemesterList = () => {
                                                 </button>
                                             </a>
                                             <div>
-                                                {/* Your component content */}
                                                 <button onClick={handleDeleteClick}>Delete</button>
                                                 <DeleteConfirmationDialog
                                                     isOpen={isDeleteDialogOpen}
                                                     onClose={() => setIsDeleteDialogOpen(false)}
                                                     onDelete={() => handleDelete(semester._id)}
-                                                    title="Delete Confirmation" // Optional: Customize title
-                                                    message="This action cannot be undone. Are you sure you want to delete?" // Optional: Customize message
+                                                    title="Delete Confirmation"
+                                                    message="This action cannot be undone. Are you sure you want to delete?"
                                                 />
                                             </div>
                                         </div>

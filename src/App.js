@@ -31,7 +31,7 @@ import ManagerMgzGd from "./screens/managerRole/ManagerMgzGd";
 import ManagerMgzCom from "./screens/managerRole/ManagerMgzCom";
 import NewMagazine from "./screens/managerRole/NewMagazine";
 import DownloadFileZip from "./components/DownloadFileZip";
-import { BarChart } from '@mui/x-charts/BarChart';
+import EditSemester from "./screens/admin/semesterManager/EditSemester";
 import NumberOfStudents from "./screens/managerRole/dashboard/NumberOfStudents";
 import PercentageOfMgz from "./screens/managerRole/dashboard/PercentageOfMgz";
 import NumberOfMgz from "./screens/managerRole/dashboard/NumberOfMgz";
@@ -106,6 +106,7 @@ function App() {
         <Route path="/listaccount" element={checkAdminRole() ? <ListAccount /> : <ForbiddenPage />} />
         <Route path="/semester" element={checkAdminRole() ? <SemesterList /> : <ForbiddenPage />} />
         <Route path="/createsemester" element={checkAdminRole() ? <CreateSemester /> : <ForbiddenPage />} />
+        <Route path="/editsemester" element={checkAdminRole() ? <EditSemester /> : <ForbiddenPage />} />
         <Route path="/createaccount" element={checkAdminRole() ? <CreateAccount /> : <ForbiddenPage />} />
         {/* Manager */}
 

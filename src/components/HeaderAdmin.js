@@ -1,95 +1,46 @@
 import React, { useState, useEffect } from "react";
 import "../screens/css/styles.css";
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom";
 import LogoutButton from "./Logout";
 
-
 function HeaderAdmin() {
+    const [activeItem, setActiveItem] = useState('');
+    const location = useLocation();
 
-    //Student
-    const [isOpenStudent, setIsOpenStudent] = useState(false);
-    const [selectedValueStudent, setSelectedValueStudent] = useState('Student Account');
+    // Xác định item được chọn dựa trên đường dẫn hiện tại
+    useEffect(() => {
+        setActiveItem(window.location.pathname);
+    }, []);
 
-    const toggleDropdownStudent = () => {
-        setIsOpenStudent(!isOpenStudent);
-    };
+    // Thiết lập active item khi component được render
+    
 
-    const handleSelectStudent = (value) => {
-        selectedValueStudent(value);
-        setIsOpenStudent(false);
-    };
-
-    //Manager
-    const [isOpenManager, setIsOpenManager] = useState(false);
-    const [selectedValueManager, setSelectedValueManager] = useState('Manager Account');
-
-    const toggleDropdownManager = () => {
-        setIsOpenManager(!isOpenManager);
-    };
-
-    const handleSelectManager = (value) => {
-        selectedValueManager(value);
-        setIsOpenManager(false);
-    };
-
-    //Coordinator
-    const [isOpenCoordinator, setIsOpenCoordinator] = useState(false);
-    const [selectedValueCoordinator, setSelectedValueCoordinator] = useState('Coordinator Account');
-
-    const toggleDropdownCoordinator = () => {
-        setIsOpenCoordinator(!isOpenCoordinator);
-    };
-
-    const handleSelectCoordinator = (value) => {
-        selectedValueCoordinator(value);
-        setIsOpenCoordinator(false);
-    };
-    const [isActive, setIsActive] = useState(false);
-
-    const handleClick = () => {
-        setIsActive(true);
-    };
-
-    // const logout = () => {
-    //     cookies.removeItem('token'); // Remove the token from local storage
-    //     // Optionally remove other user data
-    //     window.location.href = '/login'; // Redirect to the login page
-    //   };
     return (
-        <header>
+        <div className="sidebar">
             <div className="logoname">
-                <h2 style={{ fontSize: "20px" }}>FGW University Magazine Contribution</h2>
-
+                <h2 style={{ fontSize: "20px", textAlign: "center" }}>FGW University Magazine Contribution</h2>
             </div>
 
-            <div className="menu">
-                <p>
+            <div className="menuAdmin">
+                <p className={activeItem === '/adminhome' ? 'active' : ''}>
                     <Link to="/adminhome">Home</Link>
                 </p>
-                <p>
-                    <Link to="/viewfaculty">Faculty Manager</Link>
+                <p className={activeItem === '/viewfaculty' ? 'active' : ''}>
+                    <Link to="/viewfaculty">Faculty Management</Link>
                 </p>
-                <p onClick={handleClick} className={isActive ? 'active' : ''}>
-                    <Link to="/semester">Semester Manager</Link>
+                <p className={activeItem === '/semester' ? 'active' : ''}>
+                    <Link to="/semester">Semester Management</Link>
                 </p>
-                <p>
-                    <Link to="/listaccount">Account management</Link>
+                <p className={activeItem === '/listaccount' ? 'active' : ''}>
+                    <Link to="/listaccount">Account Management</Link>
                 </p>
-
-
-
             </div>
 
             <div>
                 <LogoutButton />
-
             </div>
-
-
-
-
-        </header>
+        </div>
     );
 }
 
-export default HeaderAdmin
+export default HeaderAdmin;

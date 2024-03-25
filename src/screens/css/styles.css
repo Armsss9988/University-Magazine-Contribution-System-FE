@@ -28,49 +28,167 @@ header {
     text-align: center;
     justify-content: center;
     align-items: center;
+    font-size: 24px;
 }
 
-.menu {
-    flex-direction: row;
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    justify-content: space-between;
+/* Header Admin */
+/* styles.css */
+/* styles.css */
+.sidebar {
+  width: 250px; /* Độ rộng của sidebar */
+  height: 100%; /* Chiều cao của sidebar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-.loginres {
-    flex-direction: row;
-    display: flex;
+.menuAdmin p {
+  margin-bottom: 10px; /* Khoảng cách giữa các mục trong menu */
+}
+
+.menuAdmin a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.menuAdmin a:hover {
+  color: lightgray;
+}
+
+.menuAdmin p.active a {
+  font-weight: bold;
+    color: lightblue; /* Màu sắc của mục active */
+    border-left: 4px solid lightblue; /* Border màu lightblue ở bên trái */
+    padding-left: 6px; /* Padding bổ sung để tạo khoảng cách giữa văn bản và border */
+  color: lightblue; /* Màu sắc của mục active */
+}
+
+
+/* /////////////// */
+
+/* Header Admin */
+.menuStudent {
+  display: flex;
+}
+
+.menuStudent p {
+  margin-right: 20px;
+}
+
+.menuStudent p:last-child {
+  margin-right: 0;
+}
+
+.menuStudent a {
+  text-decoration: none;
+  color: #333; /* Màu chữ */
+  font-size: 20px;
+  transition: color 0.3s ease;
+  padding: 8px 12px; /* Padding để tạo khoảng trống xung quanh văn bản */
+}
+
+.menuStudent a:hover {
+  color: #555; /* Màu chữ khi hover */
+}
+
+.menuStudent a.active {
+  font-weight: bold;
+  color: #007bff; /* Màu chữ khi active */
+  background-color: #fff; /* Màu nền khi active */
+  border: 2px solid #007bff; /* Border khi active */
+  border-radius: 4px; /* Bo góc border */
+}
+
+
+/* /////////////// */
+
+
+/* Header Guess */
+.menuGuess {
+  display: flex;
+  align-items: center;
+}
+
+.menuGuess a {
+  text-decoration: none;
+  color: #333; /* Màu chữ */
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.menuGuess a:hover {
+  color: #007bff; /* Màu chữ khi hover */
+}
+
+.menuGuess a.active {
+  font-weight: bold;
+  color: #007bff; /* Màu chữ khi active */
+  background-color: #fff; /* Màu nền khi active */
+  border: 2px solid #007bff; /* Border khi active */
+  padding: 10px;
+  border-radius: 4px; /* Bo góc border */
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown button {
+  background-color: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 8px 20px;
+  color: #333; /* Màu chữ */
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f0f0f0; /* Màu nền khi hover */
 }
 
 .btnLogin {
-    width: 80px;
-    height: 40px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    border-radius: 10px;
-    color: #FCF6E6;
-    background-color: #315D7D;
+  background-color: transparent;
+  border: 1px solid #007bff;
+  color: #007bff;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .btnLogin:hover {
-    background-color: #FCF6E6;
-    cursor: pointer;
-    color: black;
+  background-color: #007bff; /* Màu nền khi hover */
+  color: #fff; /* Màu chữ khi hover */
 }
 
-.btnRegister {
-    width: 80px;
-    height: 40px;
-    justify-content: center;
-    align-items: center;
-    color: #FCF6E6;
-    display: flex;
-    margin-left: 20px;
-    border-radius: 10px;
-    background-color: #315D7D;
-}
+
+/* /////////////// */
 
 .blogimg {
     width: 100%;
@@ -179,38 +297,7 @@ input {
 
 
 
-/* Avatar */
-.dropdown-content-ava {
-    display: none;
-    /* Initially hide the dropdown content */
-    position: absolute;
-    /* Position the content absolutely relative to the dropdown button */
-    background-color: #f1f1f1;
-    min-width: 50px;
-    padding: 0;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    /* Ensure content is displayed above other elements */
-    display: flex;
-    flex-direction: column;
 
-}
-
-.drlist-item-ava {
-    padding: 10px;
-    text-decoration: none;
-}
-
-.drlist-item-ava:hover {
-    background-color: #FCF6E6;
-    cursor: pointer;
-    color: black;
-}
-
-.active {
-    background-color: #000;
-    color: #fff;
-  }
 
   /* Profile Student */
   .profile-container {
@@ -336,10 +423,7 @@ input {
     text-align: center; /* Căn giữa text header */
   }
 
-  /* active */
-  .active{
-    background-color: red;
-  }
+ 
 
 
 

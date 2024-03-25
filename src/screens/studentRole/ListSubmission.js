@@ -6,7 +6,7 @@ import Footer from '../../components/Footer'; // Import Footer từ đường d�
 
 function ListSubmission() {
     const [submissions, setSubmissions] = useState([]);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchSubmissions = async () => {
@@ -23,8 +23,8 @@ function ListSubmission() {
     }, []);
 
     const handleDetailClick = (id) => {
-        navigate(`/detailsubmission/`,{ state: {id} }); // Navigate to edit page with faculty id
-      };
+        navigate(`/detailsubmission/`, { state: { id } }); // Navigate to edit page with faculty id
+    };
 
     return (
         <div className="container">
@@ -33,7 +33,7 @@ function ListSubmission() {
             <h1>List Submission</h1>
             <div className='main-content' style={{ padding: '20px' }}>
                 {submissions.map(submission => (
-                    <div className="box-list" key={submission.id}>
+                    <div className="box-list" key={submission._id}>
                         <div className="files-column">
                             <h3>Title</h3>
                             <p>{submission.title}</p>
