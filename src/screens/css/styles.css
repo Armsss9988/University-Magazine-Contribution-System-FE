@@ -1,6 +1,8 @@
 /* Container and footer */
 .container {
   display: flex;
+  flex-direction: column;
+  height: 100vh; /* Chiều cao 100% của viewport */
   
 }
 
@@ -16,6 +18,7 @@ footer {
 header {
   display: flex;
   justify-content: space-between;
+  border-bottom: 2px solid black;
   align-items: center;
   padding: 10px 20px;
   background-color: #e7f4fd;
@@ -460,7 +463,20 @@ button {
   color: white; /* Màu chữ của trang hiện tại */
 }
 
+/* Admin home */
 
+.background {
+  background-image: url("https://cms.greenwich.edu.vn/pluginfile.php/1/theme_adaptable/p2/1698976651/BLOG-technology-in-higher-education%401X.jpg");
+  background-size: cover; /* Chỉnh kích thước ảnh để phủ hết phần nền */
+  background-position: center; /* Canh giữa ảnh */
+  height: 100%; /* Chiều cao 100% của viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 54px;
+  text-align: center;
+}
 
 
 

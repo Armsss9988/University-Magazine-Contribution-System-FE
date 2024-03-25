@@ -3,26 +3,16 @@ import Footer from "../../components/Footer";
 import SidebarAdmin from "../../components/SidebarAdmin";
 
 function HomeAdmin() {
-    
-
     return (
         <div className="container">
-            <SidebarAdmin/>
-
-            <div className="line"></div>
-
-            <div>
-                <img className="blogimg"
-                    src="https://cms.greenwich.edu.vn/pluginfile.php/1/theme_adaptable/p1/1698976651/socialbg.png"
-                    alt="Logo" />
+            <SidebarAdmin />
+            <div className="content">
+                <div className="background">
+                    <text>Welcome to the admin role</text>
+                </div>
             </div>
-            <div className="line"></div>
-            <Footer/>
         </div>
-
-
-
     );
 }
 
-export default HomeAdmin
+export default HomeAdmin;
