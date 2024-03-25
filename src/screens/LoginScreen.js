@@ -130,7 +130,7 @@ function LoginScreen() {
                             value={formData.password}
                             onChange={handleChange}
                             required />
-                        <text style={{ fontSize: "12px" }}>Forgot password?</text>
+                        <label style={{ fontSize: "12px" }}>Forgot password?</label>
 
 
                         <button className="loginbtn" type="submit">Login</button>
