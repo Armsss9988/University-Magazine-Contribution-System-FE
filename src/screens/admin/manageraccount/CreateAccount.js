@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-// Optional import for styling
 import { Form, Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import SidebarAdmin from "../../../components/SidebarAdmin";
 import Footer from '../../../components/Footer';
 import { userAPI } from "../../../api/api";
-
 
 const CreateAccount = () => {
     const [name, setName] = useState('');
@@ -13,12 +11,11 @@ const CreateAccount = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [role, setRole] = useState('student');
     const [faculty, setFaculty] = useState('Information Technology');
-    const [errorMessage, setErrorMessage] = useState(''); // For error handling
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(role, faculty, password, email, name);
-        // Basic validation (can be enhanced)
+
         if (!name || !email || !password || !confirmPassword || !role || !faculty) {
             setErrorMessage('Please fill in all required fields.');
             return;
@@ -28,12 +25,6 @@ const CreateAccount = () => {
             setErrorMessage('Passwords do not match.');
             return;
         }
-
-        // Handle form submission logic
-        // - Send data to backend API (if applicable) using axios
-        // - Handle successful creation, error messages, etc.
-
-        // Example API call (replace with your actual API endpoint)
         try {
           const response = await userAPI.createUser( {
             username: name,
@@ -44,29 +35,22 @@ const CreateAccount = () => {
           });
 
           console.log('Student account created:', response.data);
-          
-
-
-          // Handle successful creation (clear form, redirect, etc.)
           setName('');
           setEmail('');
           setPassword('');
           setConfirmPassword('');
-          setErrorMessage(''); // Clear error message
+          setErrorMessage('');
           window.alert('Create account success!');
         } catch (error) {
           console.error('Error creating student account:', error);
-          setErrorMessage('An error occurred. Please try again later.'); // Generic error message
+          setErrorMessage('An error occurred. Please try again later.');
         }
     };
-
-
-
-
 
     const handleChangeRole = (event) => {
         setRole(event.target.value);
     };
+
     const handleChangeFaculty = (event) => {
         setFaculty(event.target.value);
     };
@@ -74,8 +58,9 @@ const CreateAccount = () => {
     return (
         <div className='container'>
             <SidebarAdmin />
-            <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <h2>Create Account</h2>
+            <div className='content-newacc'>
+            <div className='form-container'>
+                <h1>New Account</h1>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                 <Form onSubmit={handleSubmit}>
                     <FormGroup controlId="name">
@@ -95,31 +80,30 @@ const CreateAccount = () => {
                         <FormLabel>Xác nhận mật khẩu</FormLabel>
                         <FormControl type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
                     </FormGroup>
-                    <div>
+                    <div className='select-container'>
                         <text>Faculty</text>
-                        <select value={faculty} onChange={handleChangeFaculty}>
+                        <select className='faculty-select' value={faculty} onChange={handleChangeFaculty}>
                             <option value="Information Technology">Information Technology</option>
                             <option value="Business">Business</option>
                             <option value="Graphic Design">Graphic Design</option>
                         </select>
                     </div>
-                    <div>
+                    <div className='select-container'>
                         <text>Role</text>
-                        <select value={role} onChange={handleChangeRole}>
+                        <select className='role-select' value={role} onChange={handleChangeRole}>
                             <option value="student">Student</option>
                             <option value="coordinator">Coordinator</option>
                             <option value="manager">Manager</option>
                             <option value="admin">Admin</option>
                         </select>
                     </div>
-                    <Button variant="primary" type="submit">
-                        Tạo tài khoản
+                    <Button className='submit-button' variant="primary" type="submit">
+                        Create Account
                     </Button>
                 </Form>
             </div>
-            <Footer />
         </div>
-
+        </div>
     );
 };
 

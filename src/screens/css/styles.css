@@ -512,6 +512,87 @@ button {
   text-align: center;
 }
 
+/* Admin create account */
+.content-newacc{
+  flex: 1;
+  padding-left: 295px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+
+.form-container {
+  width: 50%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-container h1{
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+}
+
+.select-container {
+  margin-bottom: 10px;
+}
+.select-container text{
+  font-weight: bold;
+}
+
+.faculty-select,
+.role-select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.role-select {
+  appearance: none;
+  background-color: #fff;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="%23333" d="M5 4.3L0 0h10z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
 
 
 
