@@ -7,7 +7,7 @@ function Footer() {
 
     return (
         <footer>
-            <div style={{ textAlign: 'center' }}>
+            <div>
                 &copy; 2024 - FPT Greenwich University
             </div>
         </footer>

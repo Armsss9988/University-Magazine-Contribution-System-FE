@@ -11,16 +11,23 @@
 }
 
 footer {
-  background-color: #e7f4fd;
-  padding: 20px;
-  border-top: 2px solid black;
-
+  background-color: #e7f4fd; /* Màu nền */
+  color: black; /* Màu chữ */
+  padding: 20px 0; /* Khoảng cách giữa nội dung và viền của footer */
+  position: fixed; /* Cố định footer ở cuối trang */
+  bottom: 0; /* Dính footer vào phía dưới */
+  width: 100%; /* Chiều rộng tối đa của footer */
 }
+
+footer div {
+  text-align: center; /* Căn giữa nội dung của footer */
+}
+
 
 header {
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
   align-items: center;
   padding: 10px 20px;
   background-color: #e7f4fd;
