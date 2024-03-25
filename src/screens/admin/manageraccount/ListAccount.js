@@ -21,7 +21,8 @@ const ListAccount = () => {
   const fetchData = async () => {
     try {
       const { data } = await userAPI.allUser();
-      setAccounts(data.users);
+      setAccounts(data);
+      console.log(data);
     } catch (error) {
       console.error('Error fetching user data:', error);
       setError(error);

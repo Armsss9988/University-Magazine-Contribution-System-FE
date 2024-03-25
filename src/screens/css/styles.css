@@ -14,7 +14,6 @@ footer {
   background-color: #e7f4fd; /* Màu nền */
   color: black; /* Màu chữ */
   padding: 20px 0; /* Khoảng cách giữa nội dung và viền của footer */
-  position: fixed; /* Cố định footer ở cuối trang */
   bottom: 0; /* Dính footer vào phía dưới */
   width: 100%; /* Chiều rộng tối đa của footer */
 }
@@ -327,7 +326,6 @@ header {
   width: 100%;
   max-width: 300px;
   height: 40px;
-  margin-top: 50px;
   background-color: #315D7D;
   font-size: 16px;
   color: white;
@@ -702,41 +700,95 @@ button {
 /* List Sub */
 
 
-.main-content {
+
+.content-list-sub {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.box-list {
+.box-list-sub {
   display: flex;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #f0f0f0;
   padding: 10px;
-  width: 80%;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .files-column,
 .status-column {
   flex: 1;
-}
-
-.files-column {
-  margin-right: 20px;
-}
-
-h3 {
-  margin-bottom: 5px;
-}
-
-p {
-  margin: 0;
+  margin: 0 10px;
 }
 
 .centered-button {
+  display: flex;
+  justify-content: center;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
+
+.new-sub-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.new-sub-btn:hover {
+  background-color: #0056b3;
+}
+
+.list-sub-title {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.pagination-list-sub {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-list-sub button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination-list-sub button:hover {
+  background-color: #0056b3;
+}
+
+.pagination-list-sub button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .box-list {
+    flex-direction: column;
+  }
+
+  .files-column,
+  .status-column {
+    margin: 10px 0;
+  }
+}
+
 
 /* Student home */
 

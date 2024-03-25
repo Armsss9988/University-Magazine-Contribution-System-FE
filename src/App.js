@@ -31,9 +31,10 @@ import ManagerMgzGd from "./screens/managerRole/ManagerMgzGd";
 import ManagerMgzCom from "./screens/managerRole/ManagerMgzCom";
 import NewMagazine from "./screens/managerRole/NewMagazine";
 import DownloadFileZip from "./components/DownloadFileZip";
-import Dashboard from "./screens/managerRole/Dashboard";
-import { BarChart } from '@mui/x-charts/BarChart';
 import EditSemester from "./screens/admin/semesterManager/EditSemester";
+import NumberOfStudents from "./screens/managerRole/dashboard/NumberOfStudents";
+import PercentageOfMgz from "./screens/managerRole/dashboard/PercentageOfMgz";
+import NumberOfMgz from "./screens/managerRole/dashboard/NumberOfMgz";
 
 
 
@@ -49,11 +50,11 @@ function App() {
     const fetchUserRoles = async () => {
       try {
         const response = await userAPI.profileUser({});
-        const roles = response.data.user.role;
+        const roles = response.data.role;
         setUserRoles(roles);
         setLoading(false); // Set loading to false when roles are fetched
 
-        console.log("Role: "+roles);
+        console.log("Role: "+ roles);
       } catch (error) {
         setLoading(false);
         console.error("API Error:", error);
@@ -123,13 +124,17 @@ function App() {
         <Route path="/editsemester" element={checkAdminRole() ? <EditSemester /> : <ForbiddenPage />} />
         <Route path="/createaccount" element={checkAdminRole() ? <CreateAccount /> : <ForbiddenPage />} />
         {/* Manager */}
+
+        <Route path="/numberofstudents" element={checkManagerRole() ? <NumberOfStudents/> : <ForbiddenPage />} />
+        <Route path="/percentageofmgz" element={checkManagerRole() ? <PercentageOfMgz/> : <ForbiddenPage />} />
+        <Route path="/numberofmgz" element={checkManagerRole() ? <NumberOfMgz/> : <ForbiddenPage />} />
         <Route path="/managerhome" element={checkManagerRole() ? <ManagerHome /> : <ForbiddenPage />} />
         <Route path="/managermgzbus" element={checkManagerRole() ? <ManagerMgzBus /> : <ForbiddenPage />} />
         <Route path="/managermgzcomp" element={checkManagerRole() ? <ManagerMgzCom /> : <ForbiddenPage />} />
         <Route path="/managermgzgd" element={checkManagerRole() ? <ManagerMgzGd /> : <ForbiddenPage />} />
         <Route path="/newmagazine" element={checkManagerRole() ? <NewMagazine /> : <ForbiddenPage />} />
         <Route path="/download" element={checkManagerRole() ? <DownloadFileZip /> : <ForbiddenPage />} />
-        <Route path="/dashboard" element={checkManagerRole() ? <Dashboard /> : <ForbiddenPage />} />
+  
       </Routes>
     </BrowserRouter>
 
