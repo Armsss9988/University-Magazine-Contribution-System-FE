@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
-import HeaderAdmin from '../../../components/HeaderAdmin';
+import SidebarAdmin from "../../../components/SidebarAdmin";
 import Footer from '../../../components/Footer';
 import { semesterAPI } from "../../../api/api";
 
@@ -38,7 +37,7 @@ const CreateSemester = () => {
 
     return (
         <div className='container'>
-            <HeaderAdmin />
+            <SidebarAdmin />
             <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <h2>Tạo học kỳ mới</h2>
                 

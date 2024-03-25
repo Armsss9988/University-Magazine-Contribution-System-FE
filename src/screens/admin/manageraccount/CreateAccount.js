@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // Optional import for styling
 import { Form, Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
-import HeaderAdmin from '../../../components/HeaderAdmin';
+import SidebarAdmin from "../../../components/SidebarAdmin";
 import Footer from '../../../components/Footer';
 import { userAPI } from "../../../api/api";
 
@@ -73,7 +73,7 @@ const CreateAccount = () => {
 
     return (
         <div className='container'>
-            <HeaderAdmin />
+            <SidebarAdmin />
             <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <h2>Create Account</h2>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}

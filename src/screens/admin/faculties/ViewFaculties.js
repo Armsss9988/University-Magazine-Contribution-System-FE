@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useHistory
-import HeaderAdmin from '../../../components/HeaderAdmin';
+import { Link, useNavigate } from 'react-router-dom'; // Import useHistory
+import SidebarAdmin from "../../../components/SidebarAdmin";
 import Footer from '../../../components/Footer';
 import DeleteConfirmationDialog from '../../../components/DeleteConfirmationDialog';
 import { facultyAPI } from '../../../api/api';
@@ -36,12 +36,20 @@ const ViewFaculty = () => {
   };
 
   const handleEditClick = (id) => {
-    navigate(`/editfaculty/`,{ state: { id} }); // Navigate to edit page with faculty id
+    navigate(`/editfaculty/`, { state: { id } }); // Navigate to edit page with faculty id
   };
 
   return (
     <div className="container">
-      <HeaderAdmin />
+      <SidebarAdmin />
+      <header>
+        <text>Accounts List</text>
+        <div style={{ textAlign: 'right', float: 'right' }}>
+          <Link to="/newfaculty">
+            <button className='newaccount'>New Faculty</button>
+          </Link>
+        </div>
+      </header>
       <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h2>Faculty list</h2>
         <table className="table">
@@ -79,13 +87,7 @@ const ViewFaculty = () => {
           </tbody>
         </table>
       </div>
-      <div style={{ width: '100%', textAlign: 'center', margin: '10px' }}>
-        <a href="/newfaculty">
-          <button style={{ textAlign: 'center' }}>
-            New Faculty
-          </button>
-        </a>
-      </div>
+      
       <Footer />
     </div>
   );

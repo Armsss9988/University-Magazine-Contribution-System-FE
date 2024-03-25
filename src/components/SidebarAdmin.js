@@ -3,7 +3,7 @@ import "../screens/css/styles.css";
 import { Link, useLocation } from "react-router-dom";
 import LogoutButton from "./Logout";
 
-function HeaderAdmin() {
+function SidebarAdmin() {
     const [activeItem, setActiveItem] = useState('');
     const location = useLocation();
 
@@ -43,4 +43,4 @@ function HeaderAdmin() {
     );
 }
 
-export default HeaderAdmin;
+export default SidebarAdmin;

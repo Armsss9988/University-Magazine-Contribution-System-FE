@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer";
-import HeaderAdmin from "../../components/HeaderAdmin";
+import SidebarAdmin from "../../components/SidebarAdmin";
 
 function HomeAdmin() {
     
 
     return (
         <div className="container">
-            <HeaderAdmin/>
+            <SidebarAdmin/>
 
             <div className="line"></div>
 

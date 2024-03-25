@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import HeaderAdmin from '../../../components/HeaderAdmin';
+import SidebarAdmin from "../../../components/SidebarAdmin";
 import Footer from '../../../components/Footer';
 import { facultyAPI } from '../../../api/api';
 
@@ -35,7 +35,7 @@ const CreateFaculty = () => {
 
   return (
     <div className="container">
-      <HeaderAdmin />
+      <SidebarAdmin />
       <div style={{ flex: '1 1 auto', display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '500px', display: 'flex', flexDirection: 'column', padding: '20px' }}>
           <h2 style={{ textAlign: 'center' }}>Create Faculty</h2>

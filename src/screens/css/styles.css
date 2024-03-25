@@ -15,15 +15,14 @@ footer {
 }
 
 header {
-  background-color: #e7f4fd;
   display: flex;
-  height: 100px;
-  align-items: center;
   justify-content: space-between;
-  display: flex;
-  padding-left: 20px;
-  padding-right: 50px;
-  flex-direction: row;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #e7f4fd;
+  /* Màu nền */
+  color: #333;
+  /* Màu chữ */
 }
 
 .logoname {
@@ -360,7 +359,6 @@ header {
 
 
 button {
-  margin-top: 10px;
   padding: 5px 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -393,6 +391,51 @@ th {
   text-align: center;
   /* Căn giữa text header */
 }
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* Admin role */
+/* List Acc */
+.newaccount{
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #0836a0;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: auto;
+}
+
+.pagination {
+  display: inline-block;
+  list-style-type: none;
+  margin: 20 0;
+  
+  padding: 0;
+}
+
+.pagination li {
+  display: inline;
+  margin-right: 5px; /* Khoảng cách giữa các số trang */
+}
+
+.pagination li a {
+  color: #000; /* Màu chữ */
+  text-decoration: none;
+  padding: 5px 10px; /* Kích thước ô chứa số trang */
+  border: 1px solid #ccc; /* Viền xung quanh */
+}
+
+.pagination li a:hover {
+  background-color: #f0f0f0; /* Màu nền khi hover */
+}
+
+.pagination .active a {
+  background-color: #4CAF50; /* Màu nền của trang hiện tại */
+  color: white; /* Màu chữ của trang hiện tại */
+}
+
 
 
 

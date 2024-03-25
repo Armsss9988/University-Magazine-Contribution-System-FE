@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Import Axios for HTTP requests
-import HeaderAdmin from '../../../components/HeaderAdmin';
-import Footer from '../../../components/Footer';
+import SidebarAdmin from "../../../components/SidebarAdmin";
+import { Link } from "react-router-dom";
 import DeleteConfirmationDialog from '../../../components/DeleteConfirmationDialog';
 import { facultyAPI, userAPI } from "../../../api/api";
 
@@ -11,11 +10,12 @@ const ListAccount = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [accountsPerPage] = useState(10);
 
   useEffect(() => {
     fetchData();
     fetchDataFa();
-    
   }, []);
 
   const fetchData = async () => {
@@ -32,7 +32,6 @@ const ListAccount = () => {
     try {
       const { data } = await facultyAPI.listFaculty();
       setFaculties(data);
-      console.log(data.name);
     } catch (error) {
       console.error('Error fetching faculty data:', error);
       setError(error);
@@ -55,14 +54,29 @@ const ListAccount = () => {
     setIsDeleteDialogOpen(true);
   };
 
+  // Logic for pagination
+  const indexOfLastAccount = currentPage * accountsPerPage;
+  const indexOfFirstAccount = indexOfLastAccount - accountsPerPage;
+  const currentAccounts = accounts.slice(indexOfFirstAccount, indexOfLastAccount);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="container">
-      <HeaderAdmin />
-
+      <SidebarAdmin />
+      <header>
+        <text>Accounts List</text>
+        <div style={{ textAlign: 'right', float: 'right' }}>
+          <Link to="/createaccount">
+            <button className='newaccount'>New Account</button>
+          </Link>
+        </div>
+      </header>
       <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <h1>Accounts List</h1>
+      <h1>Accounts List</h1>
         {error && <p>Error: {error.message}</p>}
-        {accounts.length > 0 && (
+        {currentAccounts.length > 0 && (
           <table className="table">
             <thead>
               <tr>
@@ -73,8 +87,7 @@ const ListAccount = () => {
               </tr>
             </thead>
             <tbody>
-              {accounts.map((account) => (
-                
+              {currentAccounts.map((account) => (
                 <tr key={account._id}>
                   <td>{account.email}</td>
                   <td>{account.role}</td>
@@ -101,17 +114,44 @@ const ListAccount = () => {
             </tbody>
           </table>
         )}
+        {/* Pagination */}
+        {accounts.length > accountsPerPage && (
+          <Pagination
+            accountsPerPage={accountsPerPage}
+            totalAccounts={accounts.length}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
+        )}
       </div>
-
-      <div style={{ width: '100%', textAlign: 'center', margin: '10px' }}>
-        <a href="/createaccount">
-          <button>New Account</button>
-        </a>
-      </div>
-
-      <Footer />
     </div>
   );
 };
+
+const Pagination = ({ accountsPerPage, totalAccounts, paginate, currentPage }) => {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalAccounts / accountsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <nav>
+      <ul className="pagination">
+        {pageNumbers.map(number => (
+          <li key={number} className={number === currentPage ? 'page-item active' : 'page-item'}>
+            <a href="!#" className="page-link" onClick={(e) => {
+              e.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt
+              paginate(number); // Gọi hàm paginate với số trang tương ứng
+            }}>
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+
 
 export default ListAccount;

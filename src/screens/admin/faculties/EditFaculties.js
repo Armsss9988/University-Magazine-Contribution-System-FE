@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation  } from 'react-router-dom'; // Import useParams
-import HeaderAdmin from '../../../components/HeaderAdmin';
+import SidebarAdmin from "../../../components/SidebarAdmin";
 import Footer from '../../../components/Footer';
 import { facultyAPI } from '../../../api/api';
 
@@ -41,7 +41,7 @@ const EditFaculty = () => {
 
   return (
     <div className="container">
-      <HeaderAdmin/>
+      <SidebarAdmin/>
       <div style={{flex:'1 1 auto', display:'flex', justifyContent:'center'}}>
         <div style={{ width:'500px', display:'flex', flexDirection:'column',  padding:'20px'}}>
           <h1>Edit Faculty</h1>

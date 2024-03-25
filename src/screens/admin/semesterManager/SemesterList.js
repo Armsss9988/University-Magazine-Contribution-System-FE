@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useHistory
-import HeaderAdmin from '../../../components/HeaderAdmin';
+import { useNavigate } from 'react-router-dom';
+import SidebarAdmin from "../../../components/SidebarAdmin";
 import Footer from '../../../components/Footer';
 import DeleteConfirmationDialog from '../../../components/DeleteConfirmationDialog';
 import { semesterAPI } from '../../../api/api';
+import { Link } from "react-router-dom";
+
 
 const SemesterList = () => {
     const [semesters, setSemesters] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-    const navigate = useNavigate(); // Initialize useHistory
+    const [currentPage, setCurrentPage] = useState(1);
+    const [semestersPerPage] = useState(10);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchData();
@@ -39,19 +43,32 @@ const SemesterList = () => {
 
     const formatDateTime = (dateTimeString) => {
         const dateTime = new Date(dateTimeString);
-        return dateTime.toLocaleString(); // Format the date and time as desired
+        return dateTime.toLocaleString();
     };
+
+    const indexOfLastSemester = currentPage * semestersPerPage;
+    const indexOfFirstSemester = indexOfLastSemester - semestersPerPage;
+    const currentSemesters = semesters.slice(indexOfFirstSemester, indexOfLastSemester);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <div className='container'>
-            <HeaderAdmin />
+            <SidebarAdmin />
+            <header>
+                <text>Accounts List</text>
+                <div style={{ textAlign: 'right', float: 'right' }}>
+                    <Link to="/createsemester">
+                        <button className='newaccount'>New Semester</button>
+                    </Link>
+                </div>
+            </header>
             <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <h1>List of Semesters</h1>
                 {isLoading && <p>Loading semesters...</p>}
                 {error && <p>Error: {error.message}</p>}
-                {semesters.length > 0 && (
+                {currentSemesters.length > 0 && (
                     <table className="table">
-
                         <thead>
                             <tr>
                                 <th>Start date and time</th>
@@ -62,8 +79,7 @@ const SemesterList = () => {
                             </tr>
                         </thead>
                         <tbody>
-
-                            {semesters.map((semester) => (
+                            {currentSemesters.map((semester) => (
                                 <tr key={semester._id}>
                                     <td>{formatDateTime(semester.start_date)}</td>
                                     <td>{formatDateTime(semester.final_closure_date)}</td>
@@ -74,7 +90,7 @@ const SemesterList = () => {
                                             width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row',
                                             alignItems: 'center', justifyContent: 'center'
                                         }}>
-                                            <a href="/editfaculty">
+                                            <a href="/editsemester">
                                                 <button style={{ textAlign: 'center' }}>
                                                     Edit
                                                 </button>
@@ -91,25 +107,50 @@ const SemesterList = () => {
                                             </div>
                                         </div>
                                     </td>
-
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-
                 )}
-                {semesters.length === 0 && !isLoading && <p>No semesters found.</p>}
+                {currentSemesters.length === 0 && !isLoading && <p>No semesters found.</p>}
+                {/* Pagination */}
+                {semesters.length > semestersPerPage && (
+                    <Pagination
+                        semestersPerPage={semestersPerPage}
+                        totalSemesters={semesters.length}
+                        paginate={paginate}
+                        currentPage={currentPage}
+                    />
+                )}
             </div>
-            <div style={{ width: '100%', textAlign: 'center', margin: '10px' }}>
-                <a href="/createsemester">
-                    <button style={{ textAlign: 'center' }}>
-                        New Semester
-                    </button>
-                </a>
-            </div>
+
             <Footer />
         </div>
+    );
+};
 
+const Pagination = ({ semestersPerPage, totalSemesters, paginate, currentPage }) => {
+    const pageNumbers = [];
+
+    for (let i = 1; i <= Math.ceil(totalSemesters / semestersPerPage); i++) {
+        pageNumbers.push(i);
+    }
+
+    return (
+        <nav>
+            <ul className="pagination">
+                {pageNumbers.map(number => (
+                    <li key={number} className={number === currentPage ? 'page-item active' : 'page-item'}>
+                        <a href="!#" className="page-link" onClick={(e) => {
+                            e.preventDefault();
+                            paginate(number);
+                        }}>
+                            {number}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
     );
 };
 
