@@ -42,53 +42,54 @@ const ViewFaculty = () => {
   return (
     <div className="container">
       <SidebarAdmin />
-      <header>
-        <text>Accounts List</text>
-        <div style={{ textAlign: 'right', float: 'right' }}>
-          <Link to="/newfaculty">
-            <button className='newaccount'>New Faculty</button>
-          </Link>
-        </div>
-      </header>
-      <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <h2>Faculty list</h2>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {faculties.map((faculty) => (
-              <tr key={faculty._id}>
-                <td>{faculty._id}</td>
-                <td>{faculty.name}</td>
-                <td>
-                  <div style={{ width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                    <button style={{ textAlign: 'center' }} onClick={() => handleEditClick(faculty._id)}>
-                      Edit
-                    </button>
-                    <div>
-                      <button onClick={handleDeleteClick}>Delete</button>
-                      <DeleteConfirmationDialog
-                        isOpen={isDeleteDialogOpen}
-                        onClose={() => setIsDeleteDialogOpen(false)}
-                        onDelete={() => handleDelete(faculty._id)}
-                        title="Delete Confirmation"
-                        message="This action cannot be undone. Are you sure you want to delete?"
-                      />
-                    </div>
-                  </div>
-                </td>
+      <div className="content">
+        <header>
+          <text></text>
+          <div style={{ textAlign: 'right', float: 'right' }}>
+            <Link to="/newfaculty">
+              <button className='newaccount'>New Faculty</button>
+            </Link>
+          </div>
+        </header>
+        <div className='table-container'>
+          <h2>Faculty list</h2>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {faculties.map((faculty) => (
+                <tr key={faculty._id}>
+                  <td>{faculty._id}</td>
+                  <td>{faculty.name}</td>
+                  <td>
+                    <div style={{ width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                      <button style={{ textAlign: 'center' }} onClick={() => handleEditClick(faculty._id)}>
+                        Edit
+                      </button>
+                      <div>
+                        <button onClick={handleDeleteClick}>Delete</button>
+                        <DeleteConfirmationDialog
+                          isOpen={isDeleteDialogOpen}
+                          onClose={() => setIsDeleteDialogOpen(false)}
+                          onDelete={() => handleDelete(faculty._id)}
+                          title="Delete Confirmation"
+                          message="This action cannot be undone. Are you sure you want to delete?"
+                        />
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
       </div>
-      
-      <Footer />
     </div>
   );
 };

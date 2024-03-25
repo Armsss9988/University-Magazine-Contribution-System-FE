@@ -55,76 +55,77 @@ const SemesterList = () => {
     return (
         <div className='container'>
             <SidebarAdmin />
-            <header>
-                <text>Accounts List</text>
-                <div style={{ textAlign: 'right', float: 'right' }}>
-                    <Link to="/createsemester">
-                        <button className='newaccount'>New Semester</button>
-                    </Link>
-                </div>
-            </header>
-            <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <h1>List of Semesters</h1>
-                {isLoading && <p>Loading semesters...</p>}
-                {error && <p>Error: {error.message}</p>}
-                {currentSemesters.length > 0 && (
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Start date and time</th>
-                                <th>End date and time</th>
-                                <th>Status</th>
-                                <th>Name</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {currentSemesters.map((semester) => (
-                                <tr key={semester._id}>
-                                    <td>{formatDateTime(semester.start_date)}</td>
-                                    <td>{formatDateTime(semester.final_closure_date)}</td>
-                                    <td>{semester.closed ? 'Closed' : 'Opening'}</td>
-                                    <td>{semester.academic_year}</td>
-                                    <td>
-                                        <div style={{
-                                            width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row',
-                                            alignItems: 'center', justifyContent: 'center'
-                                        }}>
-                                            <a href="/editsemester">
-                                                <button style={{ textAlign: 'center' }}>
-                                                    Edit
-                                                </button>
-                                            </a>
-                                            <div>
-                                                <button onClick={handleDeleteClick}>Delete</button>
-                                                <DeleteConfirmationDialog
-                                                    isOpen={isDeleteDialogOpen}
-                                                    onClose={() => setIsDeleteDialogOpen(false)}
-                                                    onDelete={() => handleDelete(semester._id)}
-                                                    title="Delete Confirmation"
-                                                    message="This action cannot be undone. Are you sure you want to delete?"
-                                                />
-                                            </div>
-                                        </div>
-                                    </td>
+            <div className="content">
+                <header>
+                    <text></text>
+                    <div style={{ textAlign: 'right', float: 'right' }}>
+                        <Link to="/createsemester">
+                            <button className='newaccount'>New Semester</button>
+                        </Link>
+                    </div>
+                </header>
+                <div className='table-container'>
+                    <h1>List of Semesters</h1>
+                    {isLoading && <p>Loading semesters...</p>}
+                    {error && <p>Error: {error.message}</p>}
+                    {currentSemesters.length > 0 && (
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>Start date and time</th>
+                                    <th>End date and time</th>
+                                    <th>Status</th>
+                                    <th>Name</th>
+                                    <th>Action</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                )}
-                {currentSemesters.length === 0 && !isLoading && <p>No semesters found.</p>}
-                {/* Pagination */}
-                {semesters.length > semestersPerPage && (
-                    <Pagination
-                        semestersPerPage={semestersPerPage}
-                        totalSemesters={semesters.length}
-                        paginate={paginate}
-                        currentPage={currentPage}
-                    />
-                )}
-            </div>
+                            </thead>
+                            <tbody>
+                                {currentSemesters.map((semester) => (
+                                    <tr key={semester._id}>
+                                        <td>{formatDateTime(semester.start_date)}</td>
+                                        <td>{formatDateTime(semester.final_closure_date)}</td>
+                                        <td>{semester.closed ? 'Closed' : 'Opening'}</td>
+                                        <td>{semester.academic_year}</td>
+                                        <td>
+                                            <div style={{
+                                                width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row',
+                                                alignItems: 'center', justifyContent: 'center'
+                                            }}>
+                                                <a href="/editsemester">
+                                                    <button style={{ textAlign: 'center' }}>
+                                                        Edit
+                                                    </button>
+                                                </a>
+                                                <div>
+                                                    <button onClick={handleDeleteClick}>Delete</button>
+                                                    <DeleteConfirmationDialog
+                                                        isOpen={isDeleteDialogOpen}
+                                                        onClose={() => setIsDeleteDialogOpen(false)}
+                                                        onDelete={() => handleDelete(semester._id)}
+                                                        title="Delete Confirmation"
+                                                        message="This action cannot be undone. Are you sure you want to delete?"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
+                    {currentSemesters.length === 0 && !isLoading && <p>No semesters found.</p>}
+                    {/* Pagination */}
+                    {semesters.length > semestersPerPage && (
+                        <Pagination
+                            semestersPerPage={semestersPerPage}
+                            totalSemesters={semesters.length}
+                            paginate={paginate}
+                            currentPage={currentPage}
+                        />
+                    )}
+                </div>
 
-            <Footer />
+            </div>
         </div>
     );
 };

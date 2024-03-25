@@ -65,64 +65,67 @@ const ListAccount = () => {
   return (
     <div className="container">
       <SidebarAdmin />
-      <header>
-        <text>Accounts List</text>
-        <div style={{ textAlign: 'right', float: 'right' }}>
-          <Link to="/createaccount">
-            <button className='newaccount'>New Account</button>
-          </Link>
-        </div>
-      </header>
-      <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <h1>Accounts List</h1>
-        {error && <p>Error: {error.message}</p>}
-        {currentAccounts.length > 0 && (
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Faculty</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentAccounts.map((account) => (
-                <tr key={account._id}>
-                  <td>{account.email}</td>
-                  <td>{account.role}</td>
-                  <td>{getFacultyNameById(account.faculty)}</td>
-                  <td>
-                    <div style={{ width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                      <a href="/editfaculty">
-                        <button>Edit</button>
-                      </a>
-                      <div>
-                        <button onClick={handleDeleteClick}>Delete</button>
-                        <DeleteConfirmationDialog
-                          isOpen={isDeleteDialogOpen}
-                          onClose={() => setIsDeleteDialogOpen(false)}
-                          onDelete={() => handleDelete(account._id)}
-                          title="Delete Confirmation"
-                          message="This action cannot be undone. Are you sure you want to delete?"
-                        />
-                      </div>
-                    </div>
-                  </td>
+      <div className="content">
+        <header>
+          <text></text>
+          <div style={{ textAlign: 'right', float: 'right' }}>
+            <Link to="/createaccount">
+              <button className='newaccount'>New Account</button>
+            </Link>
+          </div>
+        </header>
+
+        <div className="table-container">
+          <h1>Accounts List</h1>
+          {error && <p>Error: {error.message}</p>}
+          {currentAccounts.length > 0 && (
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Faculty</th>
+                  <th>Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-        {/* Pagination */}
-        {accounts.length > accountsPerPage && (
-          <Pagination
-            accountsPerPage={accountsPerPage}
-            totalAccounts={accounts.length}
-            paginate={paginate}
-            currentPage={currentPage}
-          />
-        )}
+              </thead>
+              <tbody>
+                {currentAccounts.map((account) => (
+                  <tr key={account._id}>
+                    <td>{account.email}</td>
+                    <td>{account.role}</td>
+                    <td>{getFacultyNameById(account.faculty)}</td>
+                    <td>
+                      <div style={{ width: '100%', textAlign: 'center', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                        <a href="/editfaculty">
+                          <button>Edit</button>
+                        </a>
+                        <div>
+                          <button onClick={handleDeleteClick}>Delete</button>
+                          <DeleteConfirmationDialog
+                            isOpen={isDeleteDialogOpen}
+                            onClose={() => setIsDeleteDialogOpen(false)}
+                            onDelete={() => handleDelete(account._id)}
+                            title="Delete Confirmation"
+                            message="This action cannot be undone. Are you sure you want to delete?"
+                          />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+          {/* Pagination */}
+          {accounts.length > accountsPerPage && (
+            <Pagination
+              accountsPerPage={accountsPerPage}
+              totalAccounts={accounts.length}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
