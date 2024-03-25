@@ -52,7 +52,7 @@ const ViewFaculty = () => {
           </div>
         </header>
         <div className='table-container'>
-          <h2>Faculty list</h2>
+          <h1>Faculty list</h1>
           <table className="table">
             <thead>
               <tr>

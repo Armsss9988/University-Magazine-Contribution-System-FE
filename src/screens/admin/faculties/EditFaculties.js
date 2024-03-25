@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation  } from 'react-router-dom'; // Import useParams
+import { useLocation } from 'react-router-dom';
 import SidebarAdmin from "../../../components/SidebarAdmin";
 import Footer from '../../../components/Footer';
 import { facultyAPI } from '../../../api/api';
 
 const EditFaculty = () => {
-  const [faculty, setFaculty] = useState({ name: ""});
-  const location = useLocation(); // Get id from URL
-  const {id} = location.state;
+  const [faculty, setFaculty] = useState({ name: "" });
+  const location = useLocation();
+  const { id } = location.state;
+  
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     try {
-      const response = await facultyAPI.getFacultyById(id); // Assuming you have an API function to get faculty by id
+      const response = await facultyAPI.getFacultyById(id);
       const { data } = response;
       setFaculty(data);
-      console.log("data: " +  faculty);
     } catch (error) {
       console.error('Error fetching faculty data:', error);
     }
@@ -28,12 +28,11 @@ const EditFaculty = () => {
     setFaculty({ ...faculty, [name]: value });
   };
 
-  const handleSubmit = async (event)  => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await facultyAPI.editFaculty(id, faculty);
       window.alert(response.data.message);
-      // Handle successful update, redirect, or other actions
     } catch (error) {
       console.error('Error updating faculty:', error);
     }
@@ -41,20 +40,20 @@ const EditFaculty = () => {
 
   return (
     <div className="container">
-      <SidebarAdmin/>
-      <div style={{flex:'1 1 auto', display:'flex', justifyContent:'center'}}>
-        <div style={{ width:'500px', display:'flex', flexDirection:'column',  padding:'20px'}}>
+      <SidebarAdmin />
+      <div className="content-newacc">
+        <div className="form-container">
           <h1>Edit Faculty</h1>
-          <form onSubmit={handleSubmit  }>
+          <form onSubmit={handleSubmit}>
             <label htmlFor="name">Name:</label>
             <input type="text" id="name" name="name" value={faculty.name} onChange={handleChange} />
-            <div style={{justifyContent:'center', display:'flex'}}> 
+            <div className="button-container">
               <button type="submit">Save</button>
             </div>
           </form>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
