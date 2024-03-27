@@ -32,7 +32,7 @@ function DetailSubmission() {
         submissionsResponse.data.submission.entry
       );
       const documentPath = submissionsResponse.data.submission.document_path;
-      const fileNames = documentPath.split(",").map((name) => name.substring(id.length*2));
+      const fileNames = documentPath.split(",").map((name) => name.substring(id.length * 2));
       setFiles(fileNames);
       setSubmissions(submissionsResponse.data.submission);
       setStudent(userResponse.data.username);
@@ -48,7 +48,7 @@ function DetailSubmission() {
   };
 
   const handleEditClick = (id) => {
-    navigate(`/editsubmission/`, { state: { id: id , isEntryEnd: isEntryEnd}}); // Navigate to edit page with faculty id
+    navigate(`/editsubmission/`, { state: { id: id, isEntryEnd: isEntryEnd } }); // Navigate to edit page with faculty id
   };
 
   if (error) {
@@ -67,7 +67,7 @@ function DetailSubmission() {
         <div>Loading...</div>
       ) : (
         <div>
-          <h1>Detail Submission</h1>
+          <h1 style={{ textAlign: 'center' }}>Detail Submission</h1>
           <div
             className="main-content"
             style={{
@@ -99,15 +99,17 @@ function DetailSubmission() {
                 <div className="title-item">
                   <text>File</text>
                 </div>
-                <ul>
-                  {files.map((file,index) => (
-                  <li key={index}>
-                    <text>{file}</text>
-                  </li>
-                  ))}
-                </ul>
+                <div className="result-item">
+                  <ul>
+                    {files.map((file, index) => (
+                      <li key={index}>
+                        <text>{file}</text>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              
+
 
               <div className="detail-item">
                 <div className="title-item">
@@ -133,7 +135,7 @@ function DetailSubmission() {
                   <text>{student}</text>
                 </div>
               </div>
-              
+
               <div className="comment-item">
                 <div className="title-item">
                   <text>Comment</text>

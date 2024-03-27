@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../screens/css/styles.css";
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import LogoutButton from "./Logout";
 
 function HeaderManger() {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState('option1');
+    const [selectedValue, setSelectedValue] = useState('Magazine');
+
+    const location = useLocation(); // Sử dụng hook useLocation để lấy đường dẫn hiện tại
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -22,55 +24,37 @@ function HeaderManger() {
         <header>
             <div className="logoname">
                 <h2 style={{ fontSize: "20px" }}>FGW University Magazine Contribution</h2>
-
             </div>
 
-            <div className="menu">
-                <p>
-                    <Link to="/managerhome">Home</Link>
-                </p>
-                
+            <div className="menuGuess">
+                {/* Sử dụng className={location.pathname === '/home' ? 'active' : ''} để chỉ kích hoạt trạng thái active cho Home */}
+                <Link to="/managerhome" className={location.pathname === '/managerhome' ? 'active' : ''}>Home</Link>
+                {/* Sử dụng className={location.pathname === '/contact' ? 'active' : ''} để chỉ kích hoạt trạng thái active cho Contact */}
+                <Link to="/newmagazine" className={location.pathname === '/newmagazine' ? 'active' : ''}>New Magazine</Link>
+
                 <div className="dropdown">
                     <button onClick={toggleDropdown}>
                         {selectedValue || 'Select an option'}
                     </button>
                     {isOpen && (
                         <ul className="dropdown-content">
-                            <p>
-                                <Link to="/managermgzcomp">Magazine of COMP</Link>
+                            <p className="drlist-item" >
+                                <Link to="/numberofstudents">Magazine of COMP</Link>
                             </p>
-                            <p>
-                                <Link to="/managermgzbus">Magazine of BUS</Link>
+                            <p className="drlist-item" >
+                                <Link to="/percentageofmgz">Magazine of BUS</Link>
                             </p>
-                            <p>
-                                <Link to="/managermgzgd">Magazine of GD</Link>
-                            </p>                   
+                            <p className="drlist-item" >
+                                <Link to="/numberofmgz">Magazine of GD</Link>
+                            </p>
+
                         </ul>
                     )}
                 </div>
-                
-                <div className="dropdown">
-                    <button onClick={toggleDropdown}>
-                        {selectedValue || 'Select an option'}
-                    </button>
-                    {isOpen && (
-                        <ul className="dropdown-content">
-                            <p>
-                                <Link to="/numberofstudents">Number Of Students</Link>
-                            </p>
-                            <p>
-                                <Link to="/numberofmgz">Number Of Magazine</Link>
-                            </p>
-                            <p>
-                                <Link to="/percentageofmgz">Percen Of Magazine</Link>
-                            </p>                   
-                        </ul>
-                    )}
-                </div>
-                <p>
-                     <Link to="/newmagazine">New Magazine</Link>
-                </p>  
+
+
             </div>
+
             <div>
                 <LogoutButton />
             </div>

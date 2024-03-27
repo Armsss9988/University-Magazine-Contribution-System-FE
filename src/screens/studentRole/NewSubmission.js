@@ -97,9 +97,9 @@ const NewSubmission = () => {
     return (
         <div className="container">
             <HeaderStudent/>
-            <div className="line"></div>
-            <h1>New Submission</h1>
+            
             <div className='main-content'>
+            <h1 style={{textAlign: 'center'}}>New Submission</h1>
                 <div className="form-container">
                     <Dropzone onDrop={onDrop} className="dropzone">
                         {({ getRootProps, getInputProps }) => (

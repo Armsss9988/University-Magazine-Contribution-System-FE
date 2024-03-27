@@ -117,7 +117,7 @@ const EditSubmission = () => {
   return (
     <div className="container">
       <HeaderStudent />
-      <h1>Edit Submission</h1>
+      <h1 style={{textAlign: 'center'}}>Edit Submission</h1>
       <div className="main-content">
         <div className="form-container">
           <Dropzone onDrop={onDrop} className="dropzone">
